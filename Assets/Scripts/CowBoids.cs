@@ -1,23 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.Rendering;
+
 
 [RequireComponent(typeof(Rigidbody))]
 public class CowBoids : MonoBehaviour
 {
-    private Vector2 v1, v2, v3;
-    // v1 - First rule: Boids try to fly towards the centre of mass of neighbouring boids.
-    // v2 - Second rule: Boids try to keep a small distance away from othe objects (including other boids).
-    // v3 - Third rule: Boids try to match velocity with near boids.
-
-    private Vector2 pc;
-    // c - The percieved center of mass of all the boids (not including itself)
-
     private Rigidbody rb;
 
     public CowsManager cowsManager;
-    public float ruleOneMultiplier = 1.0f, avoidanceRange = 5.0f, ruleThreeMultiplier = 1.0f;
+    [Range(0.0f, 10.0f)]
+    public float speed;
+    public float neigbourgRange = 5.0f, avoidRange = 2.0f;
+    public float avoidingStrength = 0.1f;
+
+    private float cowDistance;
+    private int groupSize = 0;
+    private Vector2 vCenter, vAvoid, vSpeed;
 
     private void Start()
     {
@@ -26,34 +25,63 @@ public class CowBoids : MonoBehaviour
 
     private void Update()
     {
-        v1 = RuleOne();
-        v2 = RuleTwo();
-    }
+        groupSize = 0;
+        vCenter = Vector2.zero;
+        vSpeed = Vector2.zero;
+        vAvoid = Vector2.zero;
 
-    private Vector2 RuleOne()
-    {
-        // Calculate the percieved center of mass of the herd
-        pc = Vector2.zero;
-        List<GameObject> cowsWithoutSelf = cowsManager.cows;
-        cowsWithoutSelf.Remove(gameObject);
-
-        foreach (var cow in cowsWithoutSelf)
+        foreach (var cow in cowsManager.cows)
         {
-            pc += new Vector2(cow.transform.position.x, cow.transform.position.z);
+            if (cow != gameObject)
+            {
+                cowDistance = Vector3.Distance(transform.localPosition, cow.transform.localPosition);
+
+                if (cowDistance <= neigbourgRange)
+                {
+                    vCenter += ToVector2(cow.transform.localPosition);
+                    groupSize++;
+
+                    if (cowDistance < avoidRange)
+                    {
+                        vAvoid += ToVector2(transform.localPosition) - ToVector2(cow.transform.localPosition);
+                    }
+
+                    Vector2 cowV = ToVector2(cow.GetComponent<Rigidbody>().velocity);
+                    vSpeed += cowV;
+                }
+            }
         }
 
-        pc /= cowsWithoutSelf.Count;
-
-        return (pc - new Vector2(transform.position.x, transform.position.z)) / 100 * ruleOneMultiplier;
-    }
-
-    private Vector2 RuleTwo()
-    {
-        return Vector2.zero;
+        if (groupSize > 0)
+        {
+            vCenter /= groupSize;
+            vSpeed /= groupSize;
+        }
     }
 
     private void FixedUpdate()
     {
-        rb.velocity += (new Vector3(v1.x, 0, v1.y) + new Vector3(v2.x, 0, v2.y) + new Vector3(v3.x, 0, v3.y)) / Time.fixedDeltaTime;
+        Vector2 dirCenter = vCenter - ToVector2(transform.position);
+        rb.velocity = new Vector3(dirCenter.x, 0, dirCenter.y) * speed * Time.fixedDeltaTime;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, new Vector3(vCenter.x, 0, vCenter.y));
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, transform.position + new Vector3(vAvoid.x, 0, vAvoid.y));
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, transform.position + new Vector3(vSpeed.x, 0, vSpeed.y));
+
+        Gizmos.color = Color.white;
+        Gizmos.DrawLine(transform.position, transform.position + rb.velocity);
+    }
+
+    private Vector2 ToVector2(Vector3 vector3)
+    {
+        return new Vector2(vector3.x, vector3.z);
     }
 }
