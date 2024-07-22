@@ -122,6 +122,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1 &109191828
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,6 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cows: []
+=======
+>>>>>>> main
 --- !u!1 &181384349
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,7 +180,10 @@ GameObject:
   m_Component:
   - component: {fileID: 181384351}
   - component: {fileID: 181384350}
+<<<<<<< HEAD
   - component: {fileID: 181384352}
+=======
+>>>>>>> main
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -262,6 +268,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+<<<<<<< HEAD
 --- !u!114 &181384352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -880,6 +887,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1370685722}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+=======
+>>>>>>> main
 --- !u!1 &1431058920
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,7 +900,10 @@ GameObject:
   - component: {fileID: 1431058923}
   - component: {fileID: 1431058922}
   - component: {fileID: 1431058921}
+<<<<<<< HEAD
   - component: {fileID: 1431058924}
+=======
+>>>>>>> main
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -917,7 +929,11 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
+<<<<<<< HEAD
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
+=======
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+>>>>>>> main
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -966,12 +982,18 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1431058920}
   serializedVersion: 2
+<<<<<<< HEAD
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 10, z: -10}
+=======
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
+>>>>>>> main
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!114 &1431058924
 MonoBehaviour:
@@ -1345,11 +1367,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2021980356}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+=======
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> main
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1431058923}
   - {fileID: 181384351}
+<<<<<<< HEAD
   - {fileID: 686634450}
   - {fileID: 109191829}
+=======
+>>>>>>> main
