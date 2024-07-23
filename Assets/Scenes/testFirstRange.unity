@@ -421,8 +421,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 793b5acc9fd7d384e9f092e5c2ff4ce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  treePrefab: {fileID: 0}
-  numberOfTrees: 100
+  treePrefab: {fileID: 5631793314147942211, guid: e319eff1e2e224b48bd72e83efa70f5b,
+    type: 3}
+  numberOfTrees: 10
   planeSize: 10
 --- !u!1 &1588059587
 GameObject:

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 public class Proceduraltree : MonoBehaviour
@@ -26,10 +27,12 @@ public class Proceduraltree : MonoBehaviour
             float zPosition = Random.Range(-planeSize / 2, planeSize / 2);
 
             // Calcule la position de l'arbre
-            Vector3 treePosition = new Vector3(xPosition, 0, zPosition);
+            Vector3 treePosition = new Vector3(xPosition, 3, zPosition);
+            Rotate treeRotate = new Rotate(30);
 
             // Instantie l'arbre à la position calculée
             Instantiate(treePrefab, treePosition, Quaternion.identity);
+            
         }
     }
 }
