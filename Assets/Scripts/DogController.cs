@@ -7,8 +7,8 @@ public class DogController : MonoBehaviour
     public float curveOffset = 2f; // Offset of the curved path
     public float exclusionRadius = 2f; // Radius where repeated clicks are ignored for X seconds
     public float exclusionDuration = 1f;
-    public float smallExclusionRadius = 0.5f; // Smaller radius clicked dog's position - prevents other dogs from moving there
     public float directMovementDistance = 3f; // Distance before curving to destination
+    public GameObject flowerPrefab;
 
     private Vector3 lastClickPosition = Vector3.positiveInfinity;
     private float exclusionTimer = 0f;
@@ -18,7 +18,7 @@ public class DogController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 targetPosition = GetMouseWorldPosition();
+            Vector3 targetPosition = GetMouseGroundPosition();
 
             if (isExclusionActive && IsWithinExclusionRadius(targetPosition))
             {
@@ -26,11 +26,22 @@ public class DogController : MonoBehaviour
                 return;
             }
 
-            GameObject clickedDog = GetDogWithinSmallExclusionRadius(targetPosition);
+            GameObject clickedDog = GetClickedDog(targetPosition);
             if (clickedDog != null)
             {
                 ToggleDogLock(clickedDog);
                 return;
+            }
+
+            if (AllDogsLocked())
+            {
+                GameObject closestDog = FindClosestDog(targetPosition, true); // Unlock the closest dog if all are locked
+                if (closestDog != null)
+                {
+                    ToggleDogLock(closestDog); // Unlock the dog
+                    ProcessClick(targetPosition);
+                    return;
+                }
             }
 
             lastClickPosition = targetPosition;
@@ -50,12 +61,17 @@ public class DogController : MonoBehaviour
         }
     }
 
-    private Vector3 GetMouseWorldPosition()
+    private Vector3 GetMouseGroundPosition()
     {
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition.z = Camera.main.nearClipPlane;
-        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        return new Vector3(worldPosition.x, worldPosition.y, 0f);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        float distance;
+        Vector3 worldPosition = Vector3.zero;
+        if (groundPlane.Raycast(ray, out distance))
+        {
+            worldPosition = ray.GetPoint(distance);
+        }
+        return worldPosition;
     }
 
     private bool IsWithinExclusionRadius(Vector3 targetPosition)
@@ -63,14 +79,14 @@ public class DogController : MonoBehaviour
         return Vector3.Distance(lastClickPosition, targetPosition) <= exclusionRadius;
     }
 
-    private GameObject GetDogWithinSmallExclusionRadius(Vector3 targetPosition)
+    private GameObject GetClickedDog(Vector3 targetPosition)
     {
-        GameObject[] dogs = GameObject.FindGameObjectsWithTag("Dog");
-        foreach (GameObject dog in dogs)
+        Collider[] hitColliders = Physics.OverlapSphere(targetPosition, 0.1f);
+        foreach (Collider collider in hitColliders)
         {
-            if (Vector3.Distance(dog.transform.position, targetPosition) <= smallExclusionRadius)
+            if (collider.CompareTag("Dog"))
             {
-                return dog;
+                return collider.gameObject;
             }
         }
         return null;
@@ -88,7 +104,7 @@ public class DogController : MonoBehaviour
                 AudioSource[] audioSources = dog.GetComponents<AudioSource>();
                 if (audioSources.Length > 1)
                 {
-                    audioSources[1].Stop(); // Stop halètement sound
+                    audioSources[1].Stop(); // Stop halÃ¨tement sound
                 }
                 if (audioSources.Length > 0)
                 {
@@ -97,13 +113,13 @@ public class DogController : MonoBehaviour
             }
             else
             {
-                Debug.Log("Dog locked, playing halètement sound.");
+                Debug.Log("Dog locked, playing halÃ¨tement sound.");
                 dogMovement.isLocked = true;
                 AudioSource[] audioSources = dog.GetComponents<AudioSource>();
                 if (audioSources.Length > 1)
                 {
                     audioSources[1].loop = true;
-                    audioSources[1].Play(); // Play halètement sound continuously
+                    audioSources[1].Play(); // Play halÃ¨tement sound continuously
                 }
             }
         }
@@ -112,7 +128,7 @@ public class DogController : MonoBehaviour
     private void ProcessClick(Vector3 targetPosition)
     {
         Debug.Log($"Target position: {targetPosition}");
-        GameObject closestDog = FindClosestDog(targetPosition);
+        GameObject closestDog = FindClosestDog(targetPosition, false);
 
         if (closestDog != null)
         {
@@ -121,21 +137,9 @@ public class DogController : MonoBehaviour
             {
                 Debug.Log($"Dog {closestDog.name} starts moving.");
                 dogMovement.isMoving = true;
-                AudioSource audioSource = closestDog.GetComponent<AudioSource>();
-                if (audioSource != null)
-                {
-                    audioSource.Play();
-                }
-
-                if (Vector3.Distance(closestDog.transform.position, targetPosition) <= directMovementDistance)
-                {
-                    StartCoroutine(MoveDogDirectly(dogMovement, closestDog.transform.position, targetPosition));
-                }
-                else
-                {
-                    Vector3 controlPoint = GenerateControlPoint(closestDog.transform.position, targetPosition);
-                    StartCoroutine(MoveDogAlongBezierCurve(dogMovement, closestDog.transform.position, controlPoint, targetPosition));
-                }
+                Quaternion flowerRotation = Quaternion.Euler(90, 0, 0); // Rotate the flower to face upward
+                GameObject flower = Instantiate(flowerPrefab, targetPosition, flowerRotation);
+                StartCoroutine(MoveDog(closestDog, targetPosition, flower));
             }
         }
         else
@@ -144,7 +148,7 @@ public class DogController : MonoBehaviour
         }
     }
 
-    private GameObject FindClosestDog(Vector3 targetPosition)
+    private GameObject FindClosestDog(Vector3 targetPosition, bool ignoreLock)
     {
         GameObject[] dogs = GameObject.FindGameObjectsWithTag("Dog");
         GameObject closestDog = null;
@@ -153,12 +157,10 @@ public class DogController : MonoBehaviour
         foreach (GameObject dog in dogs)
         {
             DogMovement dogMovement = dog.GetComponent<DogMovement>();
-            if (dogMovement != null && !dogMovement.isMoving && !dogMovement.isLocked)
+            if (dogMovement != null && !dogMovement.isMoving && (ignoreLock || !dogMovement.isLocked))
             {
                 Vector3 dogPosition = dog.transform.position;
-                Debug.Log($"Dog {dog.name} position: {dogPosition}");
                 float distance = Vector3.Distance(dogPosition, targetPosition);
-                Debug.Log($"Dog {dog.name} distance to target: {distance}");
                 if (distance < closestDistance)
                 {
                     closestDistance = distance;
@@ -175,47 +177,33 @@ public class DogController : MonoBehaviour
         return closestDog;
     }
 
-    private Vector3 GenerateControlPoint(Vector3 startPosition, Vector3 targetPosition)
+    private bool AllDogsLocked()
     {
-        Vector3 midPoint = (startPosition + targetPosition) / 2;
-        Vector3 direction = (targetPosition - startPosition).normalized;
-        Vector3 perpendicularDirection = Vector3.Cross(direction, Vector3.forward).normalized;
-        return midPoint + perpendicularDirection * Random.Range(-curveOffset, curveOffset);
+        GameObject[] dogs = GameObject.FindGameObjectsWithTag("Dog");
+        foreach (GameObject dog in dogs)
+        {
+            DogMovement dogMovement = dog.GetComponent<DogMovement>();
+            if (dogMovement != null && !dogMovement.isLocked)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
-    private IEnumerator MoveDogDirectly(DogMovement dogMovement, Vector3 startPosition, Vector3 endPosition)
+    private IEnumerator MoveDog(GameObject dog, Vector3 targetPosition, GameObject flower)
     {
-        GameObject dog = dogMovement.gameObject;
-        while (Vector3.Distance(dog.transform.position, endPosition) > 0.1f)
+        DogMovement dogMovement = dog.GetComponent<DogMovement>();
+        AudioSource barkingAudioSource = dog.GetComponents<AudioSource>()[0];
+        barkingAudioSource.Play(); // Play barking sound when the dog starts moving
+
+        while (Vector3.Distance(dog.transform.position, targetPosition) > 0.1f)
         {
-            dog.transform.position = Vector3.MoveTowards(dog.transform.position, endPosition, speed * Time.deltaTime);
+            dog.transform.position = Vector3.MoveTowards(dog.transform.position, targetPosition, speed * Time.deltaTime);
             yield return null;
         }
-        Debug.Log($"Dog {dog.name} reached the goal. Waits for 1 second.");
-        yield return new WaitForSeconds(1f); // Wait for 1 second
+        Debug.Log($"Dog {dog.name} reached the goal.");
         dogMovement.isMoving = false;
-    }
-
-    private IEnumerator MoveDogAlongBezierCurve(DogMovement dogMovement, Vector3 startPosition, Vector3 controlPoint, Vector3 endPosition)
-    {
-        GameObject dog = dogMovement.gameObject;
-        float t = 0f;
-        while (t < 1f)
-        {
-            t += speed * Time.deltaTime / Vector3.Distance(startPosition, endPosition);
-            dog.transform.position = CalculateBezierPoint(t, startPosition, controlPoint, endPosition);
-            yield return null;
-        }
-        Debug.Log($"Dog {dog.name} reached the goal. Waits for 1 second.");
-        yield return new WaitForSeconds(1f); // Wait for 1 second
-        dogMovement.isMoving = false;
-    }
-
-    private Vector3 CalculateBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2)
-    {
-        float u = 1 - t;
-        float tt = t * t;
-        float uu = u * u;
-        return (uu * p0) + (2 * u * t * p1) + (tt * p2);
+        Destroy(flower, 0.01f);
     }
 }
