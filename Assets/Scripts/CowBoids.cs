@@ -85,7 +85,12 @@ public class CowBoids : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 dirCenter = (vCenter - ToVector2(transform.position)).normalized * toCenterMultiplier;
+        Vector2 dirCenter = Vector2.zero;
+
+        if (groupSize > 0)
+        {
+            dirCenter = (vCenter - ToVector2(transform.position)).normalized * toCenterMultiplier;
+        }
         Vector2 dirAvoid = vAvoid.normalized * toAvoid * avoidMultiplier;
         Vector2 dirAvoidDog = vDog.normalized * dogCount * avoidDogsMultiplier;
         Vector2 dirFollow = vSpeed.normalized * followMultiplier;
