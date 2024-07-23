@@ -8,6 +8,7 @@ public class DogController : MonoBehaviour
     public float exclusionRadius = 2f; // Radius where repeated clicks are ignored for X seconds
     public float exclusionDuration = 1f;
     public float smallExclusionRadius = 0.5f; // Smaller radius clicked dog's position - prevents other dogs from moving there
+    public float directMovementDistance = 3f; // Distance before curving to destination
 
     private Vector3 lastClickPosition = Vector3.positiveInfinity;
     private float exclusionTimer = 0f;
@@ -28,8 +29,7 @@ public class DogController : MonoBehaviour
             GameObject clickedDog = GetDogWithinSmallExclusionRadius(targetPosition);
             if (clickedDog != null)
             {
-                PlayExclusionSound(clickedDog);
-                Debug.Log("Click within around the dog, playing Halètement.");
+                ToggleDogLock(clickedDog);
                 return;
             }
 
@@ -76,15 +76,35 @@ public class DogController : MonoBehaviour
         return null;
     }
 
-    private void PlayExclusionSound(GameObject dog)
+    private void ToggleDogLock(GameObject dog)
     {
-        AudioSource[] audioSources = dog.GetComponents<AudioSource>();
-        if (audioSources.Length > 1)
+        DogMovement dogMovement = dog.GetComponent<DogMovement>();
+        if (dogMovement != null)
         {
-            AudioSource exclusionAudioSource = audioSources[1]; // Play "halètement"
-            if (exclusionAudioSource != null)
+            if (dogMovement.isLocked)
             {
-                exclusionAudioSource.Play();
+                Debug.Log("Dog unlocked, playing barking sound.");
+                dogMovement.isLocked = false;
+                AudioSource[] audioSources = dog.GetComponents<AudioSource>();
+                if (audioSources.Length > 1)
+                {
+                    audioSources[1].Stop(); // Stop halètement sound
+                }
+                if (audioSources.Length > 0)
+                {
+                    audioSources[0].Play(); // Play barking sound
+                }
+            }
+            else
+            {
+                Debug.Log("Dog locked, playing halètement sound.");
+                dogMovement.isLocked = true;
+                AudioSource[] audioSources = dog.GetComponents<AudioSource>();
+                if (audioSources.Length > 1)
+                {
+                    audioSources[1].loop = true;
+                    audioSources[1].Play(); // Play halètement sound continuously
+                }
             }
         }
     }
@@ -97,17 +117,25 @@ public class DogController : MonoBehaviour
         if (closestDog != null)
         {
             DogMovement dogMovement = closestDog.GetComponent<DogMovement>();
-            if (dogMovement != null && !dogMovement.isMoving)
+            if (dogMovement != null && !dogMovement.isMoving && !dogMovement.isLocked)
             {
-                Debug.Log($"Dog {closestDog.name} starts going there.");
+                Debug.Log($"Dog {closestDog.name} starts moving.");
                 dogMovement.isMoving = true;
                 AudioSource audioSource = closestDog.GetComponent<AudioSource>();
                 if (audioSource != null)
                 {
                     audioSource.Play();
                 }
-                Vector3 controlPoint = GenerateControlPoint(closestDog.transform.position, targetPosition);
-                StartCoroutine(MoveDogAlongBezierCurve(dogMovement, closestDog.transform.position, controlPoint, targetPosition));
+
+                if (Vector3.Distance(closestDog.transform.position, targetPosition) <= directMovementDistance)
+                {
+                    StartCoroutine(MoveDogDirectly(dogMovement, closestDog.transform.position, targetPosition));
+                }
+                else
+                {
+                    Vector3 controlPoint = GenerateControlPoint(closestDog.transform.position, targetPosition);
+                    StartCoroutine(MoveDogAlongBezierCurve(dogMovement, closestDog.transform.position, controlPoint, targetPosition));
+                }
             }
         }
         else
@@ -125,7 +153,7 @@ public class DogController : MonoBehaviour
         foreach (GameObject dog in dogs)
         {
             DogMovement dogMovement = dog.GetComponent<DogMovement>();
-            if (dogMovement != null && !dogMovement.isMoving)
+            if (dogMovement != null && !dogMovement.isMoving && !dogMovement.isLocked)
             {
                 Vector3 dogPosition = dog.transform.position;
                 Debug.Log($"Dog {dog.name} position: {dogPosition}");
@@ -153,6 +181,19 @@ public class DogController : MonoBehaviour
         Vector3 direction = (targetPosition - startPosition).normalized;
         Vector3 perpendicularDirection = Vector3.Cross(direction, Vector3.forward).normalized;
         return midPoint + perpendicularDirection * Random.Range(-curveOffset, curveOffset);
+    }
+
+    private IEnumerator MoveDogDirectly(DogMovement dogMovement, Vector3 startPosition, Vector3 endPosition)
+    {
+        GameObject dog = dogMovement.gameObject;
+        while (Vector3.Distance(dog.transform.position, endPosition) > 0.1f)
+        {
+            dog.transform.position = Vector3.MoveTowards(dog.transform.position, endPosition, speed * Time.deltaTime);
+            yield return null;
+        }
+        Debug.Log($"Dog {dog.name} reached the goal. Waits for 1 second.");
+        yield return new WaitForSeconds(1f); // Wait for 1 second
+        dogMovement.isMoving = false;
     }
 
     private IEnumerator MoveDogAlongBezierCurve(DogMovement dogMovement, Vector3 startPosition, Vector3 controlPoint, Vector3 endPosition)
