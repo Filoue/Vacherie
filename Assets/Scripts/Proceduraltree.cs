@@ -30,8 +30,6 @@ public class Proceduraltree : MonoBehaviour
 
             // Instantie l'arbre à la position calculée
             Instantiate(treePrefab, treePosition, Quaternion.identity);
-
-
         }
     }
 }
