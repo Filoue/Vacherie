@@ -6,22 +6,18 @@ using Random = UnityEngine.Random;
 public class ProceduralRoad : MonoBehaviour
 {
     [SerializeField] GameObject Road;
-    public int road = 100; // Le nombre d'arbres à placer
+    public int road = 100; // Le nombre d'arbres ï¿½ placer
     public float planeSize = 10f; // La taille du plane
     // Start is called before the first frame update
     void Start()
     {
-        
+
         FirstRoad();
         PlaceRoad();
     }
 
     private void PlaceRoad()
     {
-        if () 
-        { 
-            return; 
-        }
         float zPosition = Random.Range(-planeSize / 2, planeSize / 2);
 
         float xPosition = Random.Range(-planeSize / 2, planeSize / 2);
@@ -33,6 +29,6 @@ public class ProceduralRoad : MonoBehaviour
     }
     private void FirstRoad()
     {
-        Instantiate(Road,new Vector3(0, 0, 0), Quaternion.identity);
+        Instantiate(Road, new Vector3(0, 0, 0), Quaternion.identity);
     }
 }

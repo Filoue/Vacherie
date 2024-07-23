@@ -5,7 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Cow
-  - CowsManager
+  - Dog
+  - Obstacle
+  - EntitiesManager
   layers:
   - Default
   - TransparentFX

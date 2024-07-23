@@ -6,21 +6,21 @@ public class CowBoids : MonoBehaviour
 {
     private Rigidbody rb;
 
-    private CowsManager cowsManager;
+    private EntitiesManager entitiesManager;
     [Range(0.0f, 10.0f)]
     public float speed;
-    public float neigbourgRange = 5.0f, avoidRange = 2.0f;
-    public float toCenterMultiplier = 1.0f, avoidMultiplier = 1.0f, followMultiplier = 1.0f, velocityMultiplier = 1.0f, targetMultiplier = 1.0f;
+    public float neigbourgRange = 7.0f, avoidRange = 2.0f, dogAvoidRange = 5.0f;
+    public float toCenterMultiplier = 1.0f, avoidMultiplier = 1.0f, followMultiplier = 1.0f, velocityMultiplier = 1.0f, targetMultiplier = 1.0f, avoidDogsMultiplier = 1.0f;
     public Transform target;
 
     private float cowDistance;
-    private int groupSize = 0, toAvoid = 0;
-    private Vector2 vCenter, vAvoid, vSpeed, vTarget;
+    private int groupSize = 0, toAvoid = 0, dogCount = 0;
+    private Vector2 vCenter, vAvoid, vSpeed, vTarget, vDog;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        cowsManager = GameObject.FindWithTag("CowsManager").GetComponent<CowsManager>();
+        entitiesManager = GameObject.FindWithTag("EntitiesManager").GetComponent<EntitiesManager>();
 
         rb.velocity = new Vector3(0, 0, 100);
     }
@@ -29,11 +29,13 @@ public class CowBoids : MonoBehaviour
     {
         groupSize = 0;
         toAvoid = 0;
+        dogCount = 0;
         vCenter = Vector2.zero;
         vSpeed = Vector2.zero;
         vAvoid = Vector2.zero;
+        vDog = Vector2.zero;
 
-        foreach (var cow in cowsManager.cows)
+        foreach (var cow in entitiesManager.cows)
         {
             if (cow != gameObject)
             {
@@ -62,18 +64,35 @@ public class CowBoids : MonoBehaviour
             vSpeed /= groupSize;
         }
 
-        vTarget = ToVector2(target.position) - ToVector2(transform.position);
+        if (target != null)
+        {
+            vTarget = ToVector2(target.position) - ToVector2(transform.position);
+        }
+        else
+        {
+            vTarget = Vector2.zero;
+        }
+
+        foreach (var dog in entitiesManager.dogs)
+        {
+            if (Vector3.Distance(transform.position, dog.transform.position) < dogAvoidRange)
+            {
+                vDog += ToVector2(transform.position) - ToVector2(dog.transform.position);
+                dogCount++;
+            }
+        }
     }
 
     private void FixedUpdate()
     {
         Vector2 dirCenter = (vCenter - ToVector2(transform.position)).normalized * toCenterMultiplier;
         Vector2 dirAvoid = vAvoid.normalized * toAvoid * avoidMultiplier;
+        Vector2 dirAvoidDog = vDog.normalized * dogCount * avoidDogsMultiplier;
         Vector2 dirFollow = vSpeed.normalized * followMultiplier;
         Vector2 dirVelocity = new Vector2(rb.velocity.x, rb.velocity.z).normalized * velocityMultiplier;
         Vector2 dirTarget = vTarget.normalized * targetMultiplier;
 
-        Vector2 finalV = dirCenter + dirAvoid + dirFollow + dirTarget + dirVelocity;
+        Vector2 finalV = dirCenter + dirAvoid + dirFollow + dirTarget + dirVelocity + dirAvoidDog;
 
         Mathf.Clamp(finalV.magnitude, 0, speed);
 
