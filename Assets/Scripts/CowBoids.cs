@@ -1,5 +1,3 @@
-
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 
@@ -8,24 +6,29 @@ public class CowBoids : MonoBehaviour
 {
     private Rigidbody rb;
 
-    public CowsManager cowsManager;
+    private CowsManager cowsManager;
     [Range(0.0f, 10.0f)]
     public float speed;
     public float neigbourgRange = 5.0f, avoidRange = 2.0f;
-    public float avoidingStrength = 0.1f;
+    public float toCenterMultiplier = 1.0f, avoidMultiplier = 1.0f, followMultiplier = 1.0f, velocityMultiplier = 1.0f, targetMultiplier = 1.0f;
+    public Transform target;
 
     private float cowDistance;
-    private int groupSize = 0;
-    private Vector2 vCenter, vAvoid, vSpeed;
+    private int groupSize = 0, toAvoid = 0;
+    private Vector2 vCenter, vAvoid, vSpeed, vTarget;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        cowsManager = GameObject.FindWithTag("CowsManager").GetComponent<CowsManager>();
+
+        rb.velocity = new Vector3(0, 0, 100);
     }
 
     private void Update()
     {
         groupSize = 0;
+        toAvoid = 0;
         vCenter = Vector2.zero;
         vSpeed = Vector2.zero;
         vAvoid = Vector2.zero;
@@ -44,6 +47,7 @@ public class CowBoids : MonoBehaviour
                     if (cowDistance < avoidRange)
                     {
                         vAvoid += ToVector2(transform.localPosition) - ToVector2(cow.transform.localPosition);
+                        toAvoid++;
                     }
 
                     Vector2 cowV = ToVector2(cow.GetComponent<Rigidbody>().velocity);
@@ -57,12 +61,26 @@ public class CowBoids : MonoBehaviour
             vCenter /= groupSize;
             vSpeed /= groupSize;
         }
+
+        vTarget = ToVector2(target.position) - ToVector2(transform.position);
     }
 
     private void FixedUpdate()
     {
-        Vector2 dirCenter = vCenter - ToVector2(transform.position);
-        rb.velocity = new Vector3(dirCenter.x, 0, dirCenter.y) * speed * Time.fixedDeltaTime;
+        Vector2 dirCenter = (vCenter - ToVector2(transform.position)).normalized * toCenterMultiplier;
+        Vector2 dirAvoid = vAvoid.normalized * toAvoid * avoidMultiplier;
+        Vector2 dirFollow = vSpeed.normalized * followMultiplier;
+        Vector2 dirVelocity = new Vector2(rb.velocity.x, rb.velocity.z).normalized * velocityMultiplier;
+        Vector2 dirTarget = vTarget.normalized * targetMultiplier;
+
+        Vector2 finalV = dirCenter + dirAvoid + dirFollow + dirTarget + dirVelocity;
+
+        Mathf.Clamp(finalV.magnitude, 0, speed);
+
+        float yV = rb.velocity.y;
+
+        rb.velocity = new Vector3(finalV.x, 0, finalV.y) * Time.fixedDeltaTime;
+        rb.velocity = new Vector3(rb.velocity.x, yV, rb.velocity.z);
     }
 
     private void OnDrawGizmos()
