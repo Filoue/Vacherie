@@ -6,7 +6,7 @@ public class Cow : MonoBehaviour
     public Slider staminaBar;
     public float maxStamina = 100f;
     public float currentStamina;
-    public float staminaDepletionRate = 10f; // Stamina depleted per second
+    public float staminaDepletionRate = 10f;
 
     void Start()
     {
