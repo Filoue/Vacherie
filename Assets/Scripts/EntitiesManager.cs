@@ -7,6 +7,8 @@ public class EntitiesManager : MonoBehaviour
     public List<GameObject> cows;
     public List<GameObject> dogs;
     public List<GameObject> obstacles;
+    public GameObject queen;
+    public GameObject pointer;
 
     [SerializeField]
     private LayerMask raycastLayer;
@@ -17,6 +19,8 @@ public class EntitiesManager : MonoBehaviour
         cows = GameObject.FindGameObjectsWithTag("Cow").ToList();
         dogs = GameObject.FindGameObjectsWithTag("Dog").ToList();
         obstacles = GameObject.FindGameObjectsWithTag("Obstacle").ToList();
+        queen = GameObject.FindGameObjectWithTag("Queen");
+        pointer = GameObject.FindGameObjectWithTag("Pointer");
     }
 
     private void Update()
@@ -28,7 +32,8 @@ public class EntitiesManager : MonoBehaviour
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, raycastLayer))
             {
                 callPosition = hit.point;
-                NearestDog(callPosition).GetComponent<DogAI>().target = ToVector2(callPosition);
+                NearestDog(callPosition).GetComponent<DogAI>().GoToTarget(callPosition);
+                pointer.GetComponent<Pointer>().MovePointerTo(callPosition);
             }
         }
     }
@@ -39,9 +44,11 @@ public class EntitiesManager : MonoBehaviour
         float nearestDistance = Mathf.Infinity;
         foreach (var dog in dogs)
         {
-            if (Vector3.Distance(point, dog.transform.position) < nearestDistance)
+            float dogDistance = Vector3.Distance(point, dog.transform.position);
+            if (dogDistance < nearestDistance)
             {
                 nearestDog = dog;
+                nearestDistance = dogDistance;
             }
         }
 

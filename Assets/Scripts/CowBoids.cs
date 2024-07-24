@@ -9,13 +9,15 @@ public class CowBoids : MonoBehaviour
     private EntitiesManager entitiesManager;
     [Range(0.0f, 10.0f)]
     public float speed;
-    public float neigbourgRange = 7.0f, avoidRange = 2.0f, dogAvoidRange = 5.0f;
-    public float toCenterMultiplier = 1.0f, avoidMultiplier = 1.0f, followMultiplier = 1.0f, velocityMultiplier = 1.0f, targetMultiplier = 1.0f, avoidDogsMultiplier = 1.0f;
+    public float neigbourgRange = 7.0f, avoidRange = 2.0f, dogAvoidRange = 5.0f, queenAvoidRange = 2.0f, queenVisibilityRange = 10.0f;
+    public float toCenterMultiplier = 1.0f, avoidMultiplier = 1.0f, followMultiplier = 1.0f, velocityMultiplier = 1.0f, targetMultiplier = 1.0f, avoidDogsMultiplier = 1.0f, avoidQueenMultiplier = 1.0f;
     public Transform target;
+    public bool followQueen;
 
     private float cowDistance;
     private int groupSize = 0, toAvoid = 0, dogCount = 0;
-    private Vector2 vCenter, vAvoid, vSpeed, vTarget, vDog;
+    private Vector2 vCenter, vAvoid, vSpeed, vTarget, vDog, vAvoidQueen;
+    private GameObject queen;
 
     private void Start()
     {
@@ -23,6 +25,9 @@ public class CowBoids : MonoBehaviour
         entitiesManager = GameObject.FindWithTag("EntitiesManager").GetComponent<EntitiesManager>();
 
         rb.velocity = new Vector3(0, 0, 100);
+        queen = GameObject.FindGameObjectWithTag("Queen");
+
+        if (followQueen) target = queen.transform;
     }
 
     private void Update()
@@ -34,6 +39,7 @@ public class CowBoids : MonoBehaviour
         vSpeed = Vector2.zero;
         vAvoid = Vector2.zero;
         vDog = Vector2.zero;
+        vAvoidQueen = Vector2.zero;
 
         foreach (var cow in entitiesManager.cows)
         {
@@ -66,7 +72,21 @@ public class CowBoids : MonoBehaviour
 
         if (target != null)
         {
-            vTarget = ToVector2(target.position) - ToVector2(transform.position);
+            if (!followQueen)
+            {
+                vTarget = ToVector2(target.position) - ToVector2(transform.position);
+            }
+            else
+            {
+                if (Vector3.Distance(queen.transform.position, transform.position) < queenVisibilityRange)
+                {
+                    vTarget = ToVector2(target.position) - ToVector2(transform.position);
+                }
+                else
+                {
+                    vTarget = Vector2.zero;
+                }
+            }
         }
         else
         {
@@ -81,10 +101,20 @@ public class CowBoids : MonoBehaviour
                 dogCount++;
             }
         }
+
+        if (queen != null && entitiesManager.queen != gameObject)
+        {
+            if (Vector3.Distance(transform.position, queen.transform.position) < queenAvoidRange)
+            {
+                vAvoidQueen = ToVector2(transform.position) - ToVector2(queen.transform.position);
+            }
+        }
     }
 
     private void FixedUpdate()
     {
+        if (transform.position.y < -10.0f) Die();
+
         Vector2 dirCenter = Vector2.zero;
 
         if (groupSize > 0)
@@ -96,8 +126,9 @@ public class CowBoids : MonoBehaviour
         Vector2 dirFollow = vSpeed.normalized * followMultiplier;
         Vector2 dirVelocity = new Vector2(rb.velocity.x, rb.velocity.z).normalized * velocityMultiplier;
         Vector2 dirTarget = vTarget.normalized * targetMultiplier;
+        Vector2 dirAvoidQueen = vAvoidQueen.normalized * avoidQueenMultiplier;
 
-        Vector2 finalV = dirCenter + dirAvoid + dirFollow + dirTarget + dirVelocity + dirAvoidDog;
+        Vector2 finalV = dirCenter + dirAvoid + dirFollow + dirTarget + dirVelocity + dirAvoidDog + dirAvoidQueen;
 
         Mathf.Clamp(finalV.magnitude, 0, speed);
 
@@ -107,19 +138,10 @@ public class CowBoids : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, yV, rb.velocity.z);
     }
 
-    private void OnDrawGizmos()
+    private void Die()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, new Vector3(vCenter.x, 0, vCenter.y));
-
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, transform.position + new Vector3(vAvoid.x, 0, vAvoid.y));
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position, transform.position + new Vector3(vSpeed.x, 0, vSpeed.y));
-
-        Gizmos.color = Color.white;
-        Gizmos.DrawLine(transform.position, transform.position + rb.velocity);
+        entitiesManager.cows.Remove(gameObject);
+        Destroy(gameObject);
     }
 
     private Vector2 ToVector2(Vector3 vector3)
