@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int winFlowerCount;
     [SerializeField] private Transform flowerPanel;
     [SerializeField] private GameObject UIFlowerPrefab;
+    private bool gameOver;
 
     private void Start()
     {
@@ -39,8 +40,12 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void Die()
+    public void Lose()
     {
-
+        if (!gameOver)
+        {
+            print("Lol you lost... skill issue");
+            gameOver = true;
+        }
     }
 }
