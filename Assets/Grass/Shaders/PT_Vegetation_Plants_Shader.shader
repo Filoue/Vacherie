@@ -1,5 +1,5 @@
 // Made with Amplify Shader Editor v1.9.3.2
-// Available at the Unity Asset Store - http://u3d.as/y3X 
+// Available at the Unity Asset Store - http://u3d.as/y3X
 Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 {
 	Properties
@@ -55,7 +55,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 	{
 		LOD 0
 
-		
+
 
 		Tags { "RenderPipeline"="UniversalPipeline" "RenderType"="Transparent" "Queue"="Transparent" "UniversalMaterialType"="Lit" }
 
@@ -65,7 +65,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 		Offset 0 , 0
 		AlphaToMask On
 
-		
+
 
 		HLSLINCLUDE
 		#pragma target 4.5
@@ -178,10 +178,10 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 		#endif //ASE_TESS_FUNCS
 		ENDHLSL
 
-		
+
 		Pass
 		{
-			
+
 			Name "Forward"
 			Tags { "LightMode"="UniversalForwardOnly" }
 
@@ -191,7 +191,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 			Offset 0 , 0
 			ColorMask RGBA
 
-			
+
 
 			HLSLPROGRAM
 
@@ -278,7 +278,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				float4 texcoord : TEXCOORD0;
 				float4 texcoord1 : TEXCOORD1;
 				float4 texcoord2 : TEXCOORD2;
-				
+
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -375,7 +375,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				g.yz = a0.yz * x12.xz + h.yz * x12.yw;
 				return 130.0 * dot( m, g );
 			}
-			
+
 
 			VertexOutput VertexFunction( VertexInput v  )
 			{
@@ -396,9 +396,9 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				float4 staticSwitch320 = float4( v.positionOS.xyz , 0.0 );
 				#endif
 				float4 LOCALWIND353 = staticSwitch320;
-				
+
 				o.ase_texcoord8.xy = v.texcoord.xy;
-				
+
 				//setting value to unused interpolator channels and avoid initialization warnings
 				o.ase_texcoord8.zw = 0;
 
@@ -470,7 +470,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				float4 texcoord : TEXCOORD0;
 				float4 texcoord1 : TEXCOORD1;
 				float4 texcoord2 : TEXCOORD2;
-				
+
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -491,7 +491,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				o.texcoord = v.texcoord;
 				o.texcoord1 = v.texcoord1;
 				o.texcoord2 = v.texcoord2;
-				
+
 				return o;
 			}
 
@@ -534,7 +534,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				o.texcoord = patch[0].texcoord * bary.x + patch[1].texcoord * bary.y + patch[2].texcoord * bary.z;
 				o.texcoord1 = patch[0].texcoord1 * bary.x + patch[1].texcoord1 * bary.y + patch[2].texcoord1 * bary.z;
 				o.texcoord2 = patch[0].texcoord2 * bary.x + patch[1].texcoord2 * bary.y + patch[2].texcoord2 * bary.z;
-				
+
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -615,17 +615,17 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				#else
 				float4 staticSwitch372 = COLOR502;
 				#endif
-				
+
 				float GENERALALPHA505 = tex2DNode2.a;
 				float ALPHACUTOFF496 = ( 1.0 - step( GENERALALPHA505 , ( 1.0 - _LeavesThickness ) ) );
-				
+
 				#ifdef _TRANSLUCENCYONOFF_ON
 				float4 staticSwitch493 = ( COLOR502 * 1.0 );
 				#else
 				float4 staticSwitch493 = float4( 0,0,0,0 );
 				#endif
 				float4 TRANSLUCENCY497 = staticSwitch493;
-				
+
 
 				float3 BaseColor = staticSwitch372.rgb;
 				float3 Normal = float3(0, 0, 1);
@@ -830,10 +830,10 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 			ENDHLSL
 		}
 
-		
+
 		Pass
 		{
-			
+
 			Name "ShadowCaster"
 			Tags { "LightMode"="ShadowCaster" }
 
@@ -902,7 +902,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				#endif
 				#if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR) && defined(ASE_NEEDS_FRAG_SHADOWCOORDS)
 					float4 shadowCoord : TEXCOORD2;
-				#endif				
+				#endif
 				float4 ase_texcoord3 : TEXCOORD3;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 				UNITY_VERTEX_OUTPUT_STEREO
@@ -981,7 +981,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				g.yz = a0.yz * x12.xz + h.yz * x12.yw;
 				return 130.0 * dot( m, g );
 			}
-			
+
 
 			float3 _LightDirection;
 			float3 _LightPosition;
@@ -1005,9 +1005,9 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				float4 staticSwitch320 = float4( v.positionOS.xyz , 0.0 );
 				#endif
 				float4 LOCALWIND353 = staticSwitch320;
-				
+
 				o.ase_texcoord3.xy = v.ase_texcoord.xy;
-				
+
 				//setting value to unused interpolator channels and avoid initialization warnings
 				o.ase_texcoord3.zw = 0;
 
@@ -1169,7 +1169,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				float4 tex2DNode2 = tex2D( _BaseTexture, uv_BaseTexture2 );
 				float GENERALALPHA505 = tex2DNode2.a;
 				float ALPHACUTOFF496 = ( 1.0 - step( GENERALALPHA505 , ( 1.0 - _LeavesThickness ) ) );
-				
+
 
 				float Alpha = ALPHACUTOFF496;
 				float AlphaClipThreshold = 1.0;
@@ -1200,10 +1200,10 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 			ENDHLSL
 		}
 
-		
+
 		Pass
 		{
-			
+
 			Name "DepthOnly"
 			Tags { "LightMode"="DepthOnly" }
 
@@ -1349,7 +1349,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				g.yz = a0.yz * x12.xz + h.yz * x12.yw;
 				return 130.0 * dot( m, g );
 			}
-			
+
 
 			VertexOutput VertexFunction( VertexInput v  )
 			{
@@ -1370,9 +1370,9 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				float4 staticSwitch320 = float4( v.positionOS.xyz , 0.0 );
 				#endif
 				float4 LOCALWIND353 = staticSwitch320;
-				
+
 				o.ase_texcoord3.xy = v.ase_texcoord.xy;
-				
+
 				//setting value to unused interpolator channels and avoid initialization warnings
 				o.ase_texcoord3.zw = 0;
 
@@ -1516,7 +1516,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				float4 tex2DNode2 = tex2D( _BaseTexture, uv_BaseTexture2 );
 				float GENERALALPHA505 = tex2DNode2.a;
 				float ALPHACUTOFF496 = ( 1.0 - step( GENERALALPHA505 , ( 1.0 - _LeavesThickness ) ) );
-				
+
 
 				float Alpha = ALPHACUTOFF496;
 				float AlphaClipThreshold = 1.0;
@@ -1542,10 +1542,10 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 			ENDHLSL
 		}
 
-		
+
 		Pass
 		{
-			
+
 			Name "Meta"
 			Tags { "LightMode"="Meta" }
 
@@ -1594,7 +1594,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				float4 texcoord0 : TEXCOORD0;
 				float4 texcoord1 : TEXCOORD1;
 				float4 texcoord2 : TEXCOORD2;
-				
+
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -1690,7 +1690,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				g.yz = a0.yz * x12.xz + h.yz * x12.yw;
 				return 130.0 * dot( m, g );
 			}
-			
+
 
 			VertexOutput VertexFunction( VertexInput v  )
 			{
@@ -1711,12 +1711,12 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				float4 staticSwitch320 = float4( v.positionOS.xyz , 0.0 );
 				#endif
 				float4 LOCALWIND353 = staticSwitch320;
-				
+
 				float3 ase_worldNormal = TransformObjectToWorldNormal(v.normalOS);
 				o.ase_texcoord5.xyz = ase_worldNormal;
-				
+
 				o.ase_texcoord4.xy = v.texcoord0.xy;
-				
+
 				//setting value to unused interpolator channels and avoid initialization warnings
 				o.ase_texcoord4.zw = 0;
 				o.ase_texcoord5.w = 0;
@@ -1771,7 +1771,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				float4 texcoord0 : TEXCOORD0;
 				float4 texcoord1 : TEXCOORD1;
 				float4 texcoord2 : TEXCOORD2;
-				
+
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -1791,7 +1791,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				o.texcoord0 = v.texcoord0;
 				o.texcoord1 = v.texcoord1;
 				o.texcoord2 = v.texcoord2;
-				
+
 				return o;
 			}
 
@@ -1833,7 +1833,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				o.texcoord0 = patch[0].texcoord0 * bary.x + patch[1].texcoord0 * bary.y + patch[2].texcoord0 * bary.z;
 				o.texcoord1 = patch[0].texcoord1 * bary.x + patch[1].texcoord1 * bary.y + patch[2].texcoord1 * bary.z;
 				o.texcoord2 = patch[0].texcoord2 * bary.x + patch[1].texcoord2 * bary.y + patch[2].texcoord2 * bary.z;
-				
+
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -1895,10 +1895,10 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				#else
 				float4 staticSwitch372 = COLOR502;
 				#endif
-				
+
 				float GENERALALPHA505 = tex2DNode2.a;
 				float ALPHACUTOFF496 = ( 1.0 - step( GENERALALPHA505 , ( 1.0 - _LeavesThickness ) ) );
-				
+
 
 				float3 BaseColor = staticSwitch372.rgb;
 				float3 Emission = 0;
@@ -1922,10 +1922,10 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 			ENDHLSL
 		}
 
-		
+
 		Pass
 		{
-			
+
 			Name "Universal2D"
 			Tags { "LightMode"="Universal2D" }
 
@@ -2064,7 +2064,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				g.yz = a0.yz * x12.xz + h.yz * x12.yw;
 				return 130.0 * dot( m, g );
 			}
-			
+
 
 			VertexOutput VertexFunction( VertexInput v  )
 			{
@@ -2085,12 +2085,12 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				float4 staticSwitch320 = float4( v.positionOS.xyz , 0.0 );
 				#endif
 				float4 LOCALWIND353 = staticSwitch320;
-				
+
 				float3 ase_worldNormal = TransformObjectToWorldNormal(v.normalOS);
 				o.ase_texcoord3.xyz = ase_worldNormal;
-				
+
 				o.ase_texcoord2.xy = v.ase_texcoord.xy;
-				
+
 				//setting value to unused interpolator channels and avoid initialization warnings
 				o.ase_texcoord2.zw = 0;
 				o.ase_texcoord3.w = 0;
@@ -2250,10 +2250,10 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				#else
 				float4 staticSwitch372 = COLOR502;
 				#endif
-				
+
 				float GENERALALPHA505 = tex2DNode2.a;
 				float ALPHACUTOFF496 = ( 1.0 - step( GENERALALPHA505 , ( 1.0 - _LeavesThickness ) ) );
-				
+
 
 				float3 BaseColor = staticSwitch372.rgb;
 				float Alpha = ALPHACUTOFF496;
@@ -2270,10 +2270,10 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 			ENDHLSL
 		}
 
-		
+
 		Pass
 		{
-			
+
 			Name "DepthNormals"
 			Tags { "LightMode"="DepthNormalsOnly" }
 
@@ -2421,7 +2421,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				g.yz = a0.yz * x12.xz + h.yz * x12.yw;
 				return 130.0 * dot( m, g );
 			}
-			
+
 
 			VertexOutput VertexFunction( VertexInput v  )
 			{
@@ -2442,9 +2442,9 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				float4 staticSwitch320 = float4( v.positionOS.xyz , 0.0 );
 				#endif
 				float4 LOCALWIND353 = staticSwitch320;
-				
+
 				o.ase_texcoord5.xy = v.ase_texcoord.xy;
-				
+
 				//setting value to unused interpolator channels and avoid initialization warnings
 				o.ase_texcoord5.zw = 0;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
@@ -2600,7 +2600,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				float4 tex2DNode2 = tex2D( _BaseTexture, uv_BaseTexture2 );
 				float GENERALALPHA505 = tex2DNode2.a;
 				float ALPHACUTOFF496 = ( 1.0 - step( GENERALALPHA505 , ( 1.0 - _LeavesThickness ) ) );
-				
+
 
 				float3 Normal = float3(0, 0, 1);
 				float Alpha = ALPHACUTOFF496;
@@ -2647,10 +2647,10 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 			ENDHLSL
 		}
 
-		
+
 		Pass
 		{
-			
+
 			Name "SceneSelectionPass"
 			Tags { "LightMode"="SceneSelectionPass" }
 
@@ -2780,7 +2780,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				g.yz = a0.yz * x12.xz + h.yz * x12.yw;
 				return 130.0 * dot( m, g );
 			}
-			
+
 
 			struct SurfaceDescription
 			{
@@ -2809,9 +2809,9 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				float4 staticSwitch320 = float4( v.positionOS.xyz , 0.0 );
 				#endif
 				float4 LOCALWIND353 = staticSwitch320;
-				
+
 				o.ase_texcoord.xy = v.ase_texcoord.xy;
-				
+
 				//setting value to unused interpolator channels and avoid initialization warnings
 				o.ase_texcoord.zw = 0;
 
@@ -2926,7 +2926,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				float4 tex2DNode2 = tex2D( _BaseTexture, uv_BaseTexture2 );
 				float GENERALALPHA505 = tex2DNode2.a;
 				float ALPHACUTOFF496 = ( 1.0 - step( GENERALALPHA505 , ( 1.0 - _LeavesThickness ) ) );
-				
+
 
 				surfaceDescription.Alpha = ALPHACUTOFF496;
 				surfaceDescription.AlphaClipThreshold = 1.0;
@@ -2953,10 +2953,10 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 			ENDHLSL
 		}
 
-		
+
 		Pass
 		{
-			
+
 			Name "ScenePickingPass"
 			Tags { "LightMode"="Picking" }
 
@@ -3085,7 +3085,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				g.yz = a0.yz * x12.xz + h.yz * x12.yw;
 				return 130.0 * dot( m, g );
 			}
-			
+
 
 			struct SurfaceDescription
 			{
@@ -3114,9 +3114,9 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				float4 staticSwitch320 = float4( v.positionOS.xyz , 0.0 );
 				#endif
 				float4 LOCALWIND353 = staticSwitch320;
-				
+
 				o.ase_texcoord.xy = v.ase_texcoord.xy;
-				
+
 				//setting value to unused interpolator channels and avoid initialization warnings
 				o.ase_texcoord.zw = 0;
 
@@ -3230,7 +3230,7 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 				float4 tex2DNode2 = tex2D( _BaseTexture, uv_BaseTexture2 );
 				float GENERALALPHA505 = tex2DNode2.a;
 				float ALPHACUTOFF496 = ( 1.0 - step( GENERALALPHA505 , ( 1.0 - _LeavesThickness ) ) );
-				
+
 
 				surfaceDescription.Alpha = ALPHACUTOFF496;
 				surfaceDescription.AlphaClipThreshold = 1.0;
@@ -3256,12 +3256,12 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 
 			ENDHLSL
 		}
-		
+
 	}
-	
-	
+
+
 	FallBack "Hidden/Shader Graph/FallbackError"
-	
+
 	Fallback Off
 }
 /*ASEBEGIN
