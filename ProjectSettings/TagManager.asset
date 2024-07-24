@@ -8,6 +8,9 @@ TagManager:
   - Dog
   - Obstacle
   - EntitiesManager
+  - Queen
+  - Pointer
+  - GameManager
   layers:
   - Default
   - TransparentFX
