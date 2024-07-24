@@ -16,10 +16,11 @@ public class EntitiesManager : MonoBehaviour
 
     private void Start()
     {
+        queen = GameObject.FindGameObjectWithTag("Queen");
         cows = GameObject.FindGameObjectsWithTag("Cow").ToList();
+        cows.Add(queen);
         dogs = GameObject.FindGameObjectsWithTag("Dog").ToList();
         obstacles = GameObject.FindGameObjectsWithTag("Obstacle").ToList();
-        queen = GameObject.FindGameObjectWithTag("Queen");
         pointer = GameObject.FindGameObjectWithTag("Pointer");
     }
 
