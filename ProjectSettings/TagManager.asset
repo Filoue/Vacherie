@@ -5,14 +5,18 @@ TagManager:
   serializedVersion: 2
   tags:
   - Cow
+  - Dog
+  - Obstacle
+  - EntitiesManager
+  - Road
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Road
   - Water
   - UI
-  - 
+  - Road
   - 
   - 
   - 
