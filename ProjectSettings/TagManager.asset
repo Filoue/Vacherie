@@ -8,7 +8,13 @@ TagManager:
   - Dog
   - Obstacle
   - EntitiesManager
+<<<<<<< HEAD
+  - Queen
+  - Pointer
+  - GameManager
+=======
   - Road
+>>>>>>> 310ab849e7625bdb40aba721f7ddeb3189d3b2df
   layers:
   - Default
   - TransparentFX
@@ -16,7 +22,11 @@ TagManager:
   - Road
   - Water
   - UI
+<<<<<<< HEAD
+  - Ground
+=======
   - Road
+>>>>>>> 310ab849e7625bdb40aba721f7ddeb3189d3b2df
   - 
   - 
   - 
