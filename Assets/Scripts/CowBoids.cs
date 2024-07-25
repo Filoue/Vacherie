@@ -9,24 +9,34 @@ public class CowBoids : MonoBehaviour
     private EntitiesManager entitiesManager;
     [Range(0.0f, 10.0f)]
     public float speed;
-    public float neigbourgRange = 7.0f, avoidRange = 2.0f, dogAvoidRange = 5.0f;
-    public float toCenterMultiplier = 1.0f, avoidMultiplier = 1.0f, followMultiplier = 1.0f, velocityMultiplier = 1.0f, targetMultiplier = 1.0f, avoidDogsMultiplier = 1.0f;
+    public float neigbourgRange = 7.0f, avoidRange = 2.0f, dogAvoidRange = 5.0f, queenAvoidRange = 2.0f, queenVisibilityRange = 10.0f;
+    public float toCenterMultiplier = 1.0f, avoidMultiplier = 1.0f, followMultiplier = 1.0f, velocityMultiplier = 1.0f, targetMultiplier = 1.0f, avoidDogsMultiplier = 1.0f, avoidQueenMultiplier = 1.0f;
+    private Vector2 dirAvoid, dirAvoidDog, dirFollow, dirVelocity, dirTarget, dirAvoidQueen, finalV;
     public Transform target;
+    private Vector3 targetPosition;
+    public bool followQueen;
+
+    private Vector3 selfPosition;
 
     private float cowDistance;
     private int groupSize = 0, toAvoid = 0, dogCount = 0;
-    private Vector2 vCenter, vAvoid, vSpeed, vTarget, vDog;
+    private Vector2 vCenter, vAvoid, vSpeed, vTarget, vDog, vAvoidQueen;
+    private Transform queen;
+    private GameManager gameManager;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         entitiesManager = GameObject.FindWithTag("EntitiesManager").GetComponent<EntitiesManager>();
 
-        rb.velocity = new Vector3(0, 0, 100);
+        queen = GameObject.FindGameObjectWithTag("Queen").transform;
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
     }
 
     private void Update()
     {
+        selfPosition = transform.position;
+        targetPosition = target.position;
         groupSize = 0;
         toAvoid = 0;
         dogCount = 0;
@@ -34,26 +44,33 @@ public class CowBoids : MonoBehaviour
         vSpeed = Vector2.zero;
         vAvoid = Vector2.zero;
         vDog = Vector2.zero;
+        vAvoidQueen = Vector2.zero;
+
+        if (queen == null)
+        {
+            gameManager.Lose();
+        }
 
         foreach (var cow in entitiesManager.cows)
         {
             if (cow != gameObject)
             {
-                cowDistance = Vector3.Distance(transform.localPosition, cow.transform.localPosition);
+                Vector3 cowPosition3 = cow.transform.position;
+                cowDistance = Vector3.Distance(selfPosition, cowPosition3);
 
                 if (cowDistance <= neigbourgRange)
                 {
-                    vCenter += ToVector2(cow.transform.localPosition);
+                    Vector2 cowPosition2 = ToVector2(cowPosition3);
+                    vCenter += cowPosition2;
                     groupSize++;
 
                     if (cowDistance < avoidRange)
                     {
-                        vAvoid += ToVector2(transform.localPosition) - ToVector2(cow.transform.localPosition);
+                        vAvoid += ToVector2(selfPosition) - cowPosition2;
                         toAvoid++;
                     }
 
-                    Vector2 cowV = ToVector2(cow.GetComponent<Rigidbody>().velocity);
-                    vSpeed += cowV;
+                    vSpeed += ToVector2(cow.GetComponent<Rigidbody>().velocity);
                 }
             }
         }
@@ -64,9 +81,26 @@ public class CowBoids : MonoBehaviour
             vSpeed /= groupSize;
         }
 
+        if (queen != null && Vector3.Distance(queen.position, selfPosition) < queenVisibilityRange && followQueen) target = queen;
+
         if (target != null)
         {
-            vTarget = ToVector2(target.position) - ToVector2(transform.position);
+            Vector2 temp = ToVector2(targetPosition) - ToVector2(selfPosition);
+            if (!followQueen)
+            {
+                vTarget = temp;
+            }
+            else
+            {
+                if (Vector3.Distance(targetPosition, selfPosition) < queenVisibilityRange)
+                {
+                    vTarget = temp;
+                }
+                else
+                {
+                    vTarget = Vector2.zero;
+                }
+            }
         }
         else
         {
@@ -75,24 +109,41 @@ public class CowBoids : MonoBehaviour
 
         foreach (var dog in entitiesManager.dogs)
         {
-            if (Vector3.Distance(transform.position, dog.transform.position) < dogAvoidRange)
+
+            if (Vector3.Distance(selfPosition, dog.transform.position) < dogAvoidRange)
             {
-                vDog += ToVector2(transform.position) - ToVector2(dog.transform.position);
+                vDog += ToVector2(selfPosition) - ToVector2(dog.transform.position);
                 dogCount++;
+            }
+        }
+
+        if (queen != null && entitiesManager.queen != gameObject)
+        {
+            if (Vector3.Distance(selfPosition, queen.position) < queenAvoidRange)
+            {
+                vAvoidQueen = ToVector2(selfPosition) - ToVector2(queen.position);
             }
         }
     }
 
     private void FixedUpdate()
     {
-        Vector2 dirCenter = (vCenter - ToVector2(transform.position)).normalized * toCenterMultiplier;
-        Vector2 dirAvoid = vAvoid.normalized * toAvoid * avoidMultiplier;
-        Vector2 dirAvoidDog = vDog.normalized * dogCount * avoidDogsMultiplier;
-        Vector2 dirFollow = vSpeed.normalized * followMultiplier;
-        Vector2 dirVelocity = new Vector2(rb.velocity.x, rb.velocity.z).normalized * velocityMultiplier;
-        Vector2 dirTarget = vTarget.normalized * targetMultiplier;
+        if (selfPosition.y < -10.0f) Die();
 
-        Vector2 finalV = dirCenter + dirAvoid + dirFollow + dirTarget + dirVelocity + dirAvoidDog;
+        Vector2 dirCenter = Vector2.zero;
+
+        if (groupSize > 0)
+        {
+            dirCenter = (vCenter - ToVector2(selfPosition)).normalized * toCenterMultiplier;
+        }
+        dirAvoid = vAvoid.normalized * toAvoid * avoidMultiplier;
+        dirAvoidDog = vDog.normalized * dogCount * avoidDogsMultiplier;
+        dirFollow = vSpeed.normalized * followMultiplier;
+        dirVelocity = new Vector2(rb.velocity.x, rb.velocity.z).normalized * velocityMultiplier;
+        dirTarget = vTarget.normalized * targetMultiplier;
+        dirAvoidQueen = vAvoidQueen.normalized * avoidQueenMultiplier;
+
+        finalV = dirCenter + dirAvoid + dirFollow + dirTarget + dirVelocity + dirAvoidDog + dirAvoidQueen;
 
         Mathf.Clamp(finalV.magnitude, 0, speed);
 
@@ -102,19 +153,10 @@ public class CowBoids : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, yV, rb.velocity.z);
     }
 
-    private void OnDrawGizmos()
+    private void Die()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, new Vector3(vCenter.x, 0, vCenter.y));
-
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, transform.position + new Vector3(vAvoid.x, 0, vAvoid.y));
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position, transform.position + new Vector3(vSpeed.x, 0, vSpeed.y));
-
-        Gizmos.color = Color.white;
-        Gizmos.DrawLine(transform.position, transform.position + rb.velocity);
+        entitiesManager.cows.Remove(gameObject);
+        Destroy(gameObject);
     }
 
     private Vector2 ToVector2(Vector3 vector3)
