@@ -84,7 +84,7 @@ public class DogAI : MonoBehaviour
         goToTarget = true;
     }
 
-    private void Die()
+    public void Die()
     {
         entitiesManager.dogs.Remove(gameObject);
         Destroy(gameObject);

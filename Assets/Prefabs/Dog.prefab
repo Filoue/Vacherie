@@ -201,6 +201,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {x: 0, y: 0}
-  speed: 200
+  speed: 100
   stopDistance: 0.1
-  neigbourgRange: 10
+  neigbourgRange: 5

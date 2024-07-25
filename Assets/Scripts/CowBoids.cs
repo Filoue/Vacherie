@@ -7,7 +7,7 @@ public class CowBoids : MonoBehaviour
     private Rigidbody rb;
 
     private EntitiesManager entitiesManager;
-    [Range(0.0f, 10.0f)]
+    [Range(0.0f, 200.0f)]
     public float speed;
     public float neigbourgRange = 7.0f, avoidRange = 2.0f, dogAvoidRange = 5.0f, queenAvoidRange = 2.0f, queenVisibilityRange = 10.0f;
     public float toCenterMultiplier = 1.0f, avoidMultiplier = 1.0f, followMultiplier = 1.0f, velocityMultiplier = 1.0f, targetMultiplier = 1.0f, avoidDogsMultiplier = 1.0f, avoidQueenMultiplier = 1.0f;
@@ -36,7 +36,7 @@ public class CowBoids : MonoBehaviour
     private void Update()
     {
         selfPosition = transform.position;
-        targetPosition = target.position;
+        if (target != null) targetPosition = target.position;
         groupSize = 0;
         toAvoid = 0;
         dogCount = 0;
@@ -145,7 +145,9 @@ public class CowBoids : MonoBehaviour
 
         finalV = dirCenter + dirAvoid + dirFollow + dirTarget + dirVelocity + dirAvoidDog + dirAvoidQueen;
 
-        Mathf.Clamp(finalV.magnitude, 0, speed);
+        print(finalV.magnitude);
+        if (finalV.magnitude > speed) finalV = finalV.normalized * speed;
+        print(finalV.magnitude);
 
         float yV = rb.velocity.y;
 
@@ -153,7 +155,7 @@ public class CowBoids : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, yV, rb.velocity.z);
     }
 
-    private void Die()
+    public void Die()
     {
         entitiesManager.cows.Remove(gameObject);
         Destroy(gameObject);
