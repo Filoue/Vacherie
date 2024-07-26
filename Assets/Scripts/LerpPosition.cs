@@ -42,6 +42,7 @@ public class LerpPosition : MonoBehaviour
 
     public void StartMoving()
     {
+        print("Camewra nimation start");
         animate = true;
 
         // Keep a note of the time the movement started.

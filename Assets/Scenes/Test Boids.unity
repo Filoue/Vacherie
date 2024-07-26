@@ -1031,6 +1031,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7146126488430696949, guid: 5c61d61d71fbfd54d92adbcd5e1a8f73,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9024644671760043818, guid: 5c61d61d71fbfd54d92adbcd5e1a8f73,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1895,12 +1900,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1850587701}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &546425262 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9024644671760043818, guid: 5c61d61d71fbfd54d92adbcd5e1a8f73,
-    type: 3}
-  m_PrefabInstance: {fileID: 1473268111}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &568606609
 GameObject:
   m_ObjectHideFlags: 0
@@ -2347,7 +2346,6 @@ Transform:
   m_Children:
   - {fileID: 832634146563907726}
   - {fileID: 1748812328}
-  - {fileID: 546425262}
   - {fileID: 2046164947}
   - {fileID: 991864107}
   - {fileID: 422516341}
@@ -2980,6 +2978,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cow (40)
       objectReference: {fileID: 0}
+    - target: {fileID: 4327649226621515308, guid: 5c61d61d71fbfd54d92adbcd5e1a8f73,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 832634146563907726}
     - target: {fileID: 9024644671760043818, guid: 5c61d61d71fbfd54d92adbcd5e1a8f73,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4320,74 +4323,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c61d61d71fbfd54d92adbcd5e1a8f73, type: 3}
---- !u!1001 &1473268111
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 686634450}
-    m_Modifications:
-    - target: {fileID: 3482171089844306403, guid: 5c61d61d71fbfd54d92adbcd5e1a8f73,
-        type: 3}
-      propertyPath: m_Name
-      value: Cow (20)
-      objectReference: {fileID: 0}
-    - target: {fileID: 9024644671760043818, guid: 5c61d61d71fbfd54d92adbcd5e1a8f73,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9024644671760043818, guid: 5c61d61d71fbfd54d92adbcd5e1a8f73,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9024644671760043818, guid: 5c61d61d71fbfd54d92adbcd5e1a8f73,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -5.51
-      objectReference: {fileID: 0}
-    - target: {fileID: 9024644671760043818, guid: 5c61d61d71fbfd54d92adbcd5e1a8f73,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9024644671760043818, guid: 5c61d61d71fbfd54d92adbcd5e1a8f73,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9024644671760043818, guid: 5c61d61d71fbfd54d92adbcd5e1a8f73,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9024644671760043818, guid: 5c61d61d71fbfd54d92adbcd5e1a8f73,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9024644671760043818, guid: 5c61d61d71fbfd54d92adbcd5e1a8f73,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9024644671760043818, guid: 5c61d61d71fbfd54d92adbcd5e1a8f73,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9024644671760043818, guid: 5c61d61d71fbfd54d92adbcd5e1a8f73,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5c61d61d71fbfd54d92adbcd5e1a8f73, type: 3}
 --- !u!1001 &1474874729
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5309,10 +5244,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cow (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 4327649226621515308, guid: 5c61d61d71fbfd54d92adbcd5e1a8f73,
+    - target: {fileID: 7146126488430696949, guid: 5c61d61d71fbfd54d92adbcd5e1a8f73,
         type: 3}
-      propertyPath: target
-      value: 
+      propertyPath: m_FlipX
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9024644671760043818, guid: 5c61d61d71fbfd54d92adbcd5e1a8f73,
         type: 3}
@@ -6516,6 +6451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 832634146563907726}
+  animated: 0
 --- !u!4 &9024644672739192586 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8016519047098880276, guid: 9118d4c6435d5744f8e7f4b2e1d725d7,
