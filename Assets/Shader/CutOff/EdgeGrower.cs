@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EdgeGrower : MonoBehaviour
 {
-    public float animationSpeed = 0.2f;
+    public float animationSpeed = 0.05f;
     private SpriteRenderer spriteRenderer;
     private float currentTime;
     private string shaderProperty = "_Edge";

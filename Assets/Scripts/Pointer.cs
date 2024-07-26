@@ -5,6 +5,7 @@ using UnityEngine;
 public class Pointer : MonoBehaviour
 {
     public GameObject visuals;
+    public GameObject smokePoofPrefab;
 
     private EntitiesManager entitiesManager;
     public float dissapearDistance;
@@ -32,7 +33,10 @@ public class Pointer : MonoBehaviour
     {
         if (NearestDogDistance(transform.position) < dissapearDistance)
         {
+            GameObject poofInstance = Instantiate(smokePoofPrefab, transform.position, Quaternion.identity);
+            Destroy(poofInstance, 2f); // Adjust the delay as necessary
             visuals.SetActive(false);
+            transform.position = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue); // Move the pointer far away
         }
     }
 
