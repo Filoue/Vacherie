@@ -42,6 +42,9 @@ public class Pointer : MonoBehaviour
 
     public void MovePointerTo(Vector3 position)
     {
+        GameObject poofInstance = Instantiate(smokePoofPrefab, position, Quaternion.identity);
+        Destroy(poofInstance, 2f); // Adjust the delay as necessary
+
         visuals.SetActive(true);
         transform.position = position;
 

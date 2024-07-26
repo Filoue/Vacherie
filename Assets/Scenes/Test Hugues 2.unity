@@ -215,17 +215,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2327469378943144750, guid: af5e4f1d6ba50034aa4d629a90671e10,
-        type: 3}
-      propertyPath: smokePoofVFX
-      value: 
-      objectReference: {fileID: 3823968885329660070, guid: 224379b4787d6f741a925bcbd13d6a53,
-        type: 3}
-    - target: {fileID: 2327469378943144750, guid: af5e4f1d6ba50034aa4d629a90671e10,
-        type: 3}
-      propertyPath: smokePoofPrefab
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5998899658727791308, guid: af5e4f1d6ba50034aa4d629a90671e10,
         type: 3}
       propertyPath: m_Name
@@ -281,18 +270,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8655182297771176313, guid: af5e4f1d6ba50034aa4d629a90671e10,
-        type: 3}
-      propertyPath: Priority
-      value: 87
-      objectReference: {fileID: 0}
-    - target: {fileID: 8655182297771176313, guid: af5e4f1d6ba50034aa4d629a90671e10,
-        type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3809554692535262324, guid: af5e4f1d6ba50034aa4d629a90671e10, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af5e4f1d6ba50034aa4d629a90671e10, type: 3}
