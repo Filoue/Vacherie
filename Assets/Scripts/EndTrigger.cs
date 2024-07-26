@@ -12,6 +12,6 @@ public class EndTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Cow" || other.tag == "Dog" || other.tag == "Queen") gameManager.FinishLevel();
+        if (other.tag == "Queen") gameManager.FinishLevel();
     }
 }

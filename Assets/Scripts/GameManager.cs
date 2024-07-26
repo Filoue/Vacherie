@@ -15,7 +15,9 @@ public class GameManager : MonoBehaviour
     private EntitiesManager entitiesManager;
     private CameraFollow mainCameraScript;
     private bool gameOver;
-    private bool finishing;
+    public bool finishing;
+    private bool pauseMenu;
+    public GameObject PauseMenuObject;
 
     private void Start()
     {
@@ -26,12 +28,14 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (finishing)
+        if (entitiesManager.queen == null || entitiesManager.dogs.Count <= 0)
         {
-            foreach (var dog in entitiesManager.dogs)
-            {
-                dog.GetComponent<DogAI>().GoToTarget(endDogTarget.transform.position);
-            }
+            Lose();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseMenu();
         }
     }
 
@@ -50,6 +54,13 @@ public class GameManager : MonoBehaviour
             mainCameraScript.newTarget(endCameraTarget, true);
             endCameraTarget.GetComponent<LerpPosition>().StartMoving();
             Invoke("Win", finishTimer);
+
+            foreach (var dog in entitiesManager.dogs)
+            {
+                DogAI dogAI = dog.GetComponent<DogAI>();
+                dogAI.GoToTarget(endDogTarget.transform.position);
+                dogAI.neigbourgRange = 0;
+            }
         }
     }
 
@@ -65,5 +76,29 @@ public class GameManager : MonoBehaviour
             print("Lol you lost... skill issue");
             gameOver = true;
         }
+    }
+
+    private void PauseMenu()
+    {
+        if (pauseMenu)
+        {
+            pauseMenu = false;
+            PauseTime();
+        }
+        else
+        {
+            pauseMenu = true;
+            ResumeTime();
+        }
+    }
+
+    private void PauseTime()
+    {
+        Time.timeScale = 0;
+    }
+
+    private void ResumeTime()
+    {
+        Time.timeScale = 1;
     }
 }

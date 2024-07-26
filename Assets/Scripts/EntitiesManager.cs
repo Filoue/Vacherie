@@ -14,6 +14,11 @@ public class EntitiesManager : MonoBehaviour
     private LayerMask raycastLayer;
     private Vector3 callPosition;
 
+    private bool activePointer;
+    private GameManager gameManager;
+    public float clickCooldown;
+    private bool canClick;
+
     private void Start()
     {
         queen = GameObject.FindGameObjectWithTag("Queen");
@@ -22,12 +27,20 @@ public class EntitiesManager : MonoBehaviour
         dogs = GameObject.FindGameObjectsWithTag("Dog").ToList();
         obstacles = GameObject.FindGameObjectsWithTag("Obstacle").ToList();
         pointer = GameObject.FindGameObjectWithTag("Pointer");
+
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
+        canClick = true;
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        activePointer = !gameManager.finishing;
+
+        if (Input.GetMouseButtonDown(0) && activePointer && canClick)
         {
+            canClick = false;
+            Invoke("Cooldown", clickCooldown);
+
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, raycastLayer))
@@ -59,5 +72,10 @@ public class EntitiesManager : MonoBehaviour
     private Vector2 ToVector2(Vector3 vector3)
     {
         return new Vector2(vector3.x, vector3.z);
+    }
+
+    private void Cooldown()
+    {
+        canClick = true;
     }
 }

@@ -50,22 +50,6 @@ public class CowBoids : MonoBehaviour
         vDog = Vector2.zero;
         vAvoidQueen = Vector2.zero;
 
-        if (rb.velocity.x >= flipThreshold)
-        {
-            cowVisuals.position = rightRotation.position;
-            spriteRenderer.flipX = false;
-        }
-        else if (rb.velocity.x <= -flipThreshold)
-        {
-            cowVisuals.position = leftRotation.position;
-            spriteRenderer.flipX = true;
-        }
-
-        if (queen == null)
-        {
-            gameManager.Lose();
-        }
-
         foreach (var cow in entitiesManager.cows)
         {
             if (cow != gameObject)
@@ -168,6 +152,17 @@ public class CowBoids : MonoBehaviour
 
         rb.velocity = new Vector3(finalV.x, 0, finalV.y) * Time.fixedDeltaTime;
         rb.velocity = new Vector3(rb.velocity.x, yV, rb.velocity.z);
+
+        if (rb.velocity.x >= flipThreshold)
+        {
+            cowVisuals.position = rightRotation.position;
+            spriteRenderer.flipX = false;
+        }
+        else if (rb.velocity.x <= -flipThreshold)
+        {
+            cowVisuals.position = leftRotation.position;
+            spriteRenderer.flipX = true;
+        }
     }
 
     public void Die()

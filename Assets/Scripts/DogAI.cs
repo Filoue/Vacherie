@@ -8,7 +8,8 @@ public class DogAI : MonoBehaviour
     private Rigidbody rb;
     public Vector2 target;
     private Vector2 dir;
-    public float speed;
+    public float maxSpeed;
+    private float speed;
     public float walkingSpeed;
     private bool goToTarget;
     public float stopDistance = 0.05f;
@@ -20,6 +21,9 @@ public class DogAI : MonoBehaviour
     public Transform dogVisuals;
     public SpriteRenderer spriteRenderer;
     public float flipThreshold;
+    public List<AudioClip> barks;
+    private List<AudioClip> tempBarks;
+    public AudioSource audioSource;
 
     private void Start()
     {
@@ -27,21 +31,15 @@ public class DogAI : MonoBehaviour
         target = ToVector2(transform.position);
         goToTarget = false;
         entitiesManager = GameObject.FindGameObjectWithTag("EntitiesManager").GetComponent<EntitiesManager>();
+        speed = maxSpeed;
+
+        tempBarks = new List<AudioClip>();
     }
 
     private void Update()
     {
         vSpeed = Vector2.zero;
         groupSize = 0;
-
-        if (rb.velocity.x >= flipThreshold)
-        {
-            spriteRenderer.flipX = false;
-        }
-        else if (rb.velocity.x <= -flipThreshold)
-        {
-            spriteRenderer.flipX = true;
-        }
 
         foreach (var cow in entitiesManager.cows)
         {
@@ -90,12 +88,23 @@ public class DogAI : MonoBehaviour
             if (rb.velocity.magnitude > walkingSpeed) rb.velocity = rb.velocity.normalized * walkingSpeed;
             rb.velocity = new Vector3(rb.velocity.x, yV, rb.velocity.z);
         }
+
+        if (rb.velocity.x >= flipThreshold)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (rb.velocity.x <= -flipThreshold)
+        {
+            spriteRenderer.flipX = true;
+        }
     }
 
     public void GoToTarget(Vector3 target)
     {
         this.target = new Vector2(target.x, target.z);
         goToTarget = true;
+        speed /= 3;
+        Invoke("Bark", 0.3f);
     }
 
     public void Die()
@@ -107,5 +116,26 @@ public class DogAI : MonoBehaviour
     private Vector2 ToVector2(Vector3 vector3)
     {
         return new Vector2(vector3.x, vector3.z);
+    }
+
+    private void Bark()
+    {
+        speed = maxSpeed;
+
+        if (tempBarks.Count > 0)
+        {
+            int random = Random.Range(0, tempBarks.Count - 1);
+            audioSource.PlayOneShot(tempBarks[random]);
+            tempBarks.RemoveAt(random);
+        }
+        else
+        {
+            foreach (var sound in barks)
+            {
+                tempBarks.Add(sound);
+            }
+
+            Bark();
+        }
     }
 }
