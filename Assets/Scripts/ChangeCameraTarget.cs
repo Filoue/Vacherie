@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class ChangeCameraTarget : MonoBehaviour
 {
-    private Transform camera;
+    private Transform mainCamera;
     public Transform newTarget;
 
     private void Start()
     {
-        camera = GameObject.FindWithTag("MainCamera").transform;
+        mainCamera = GameObject.FindWithTag("MainCamera").transform;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Cow" || other.tag == "Dog" || other.tag == "Queen") camera.GetComponent<CameraFollow>().newTarget(newTarget);
+        if (other.tag == "Cow" || other.tag == "Dog" || other.tag == "Queen") mainCamera.GetComponent<CameraFollow>().newTarget(newTarget);
     }
 }

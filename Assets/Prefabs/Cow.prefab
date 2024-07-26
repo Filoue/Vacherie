@@ -204,17 +204,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   neigbourgRange: 5
-  avoidRange: 2
-  dogAvoidRange: 5
-  queenAvoidRange: 2
-  queenVisibilityRange: 10
+  avoidRange: 1.5
+  dogAvoidRange: 3
+  queenAvoidRange: 1.5
+  queenVisibilityRange: 5
   toCenterMultiplier: 5
   avoidMultiplier: 5
   followMultiplier: 1
   velocityMultiplier: 100
   targetMultiplier: 10
   avoidDogsMultiplier: 50
-  avoidQueenMultiplier: 150
+  avoidQueenMultiplier: 200
   target: {fileID: 0}
   followQueen: 1
 --- !u!1 &7073401027685419782

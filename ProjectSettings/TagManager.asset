@@ -4,17 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Cow
-  - Dog
-  - Obstacle
-  - EntitiesManager
-<<<<<<< HEAD
-  - Queen
   - Pointer
+  - Queen
+  - EntitiesManager
   - GameManager
-=======
-  - Road
->>>>>>> 310ab849e7625bdb40aba721f7ddeb3189d3b2df
+  - Dog
+  - Cow
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -22,11 +18,7 @@ TagManager:
   - 
   - Water
   - UI
-<<<<<<< HEAD
   - Ground
-=======
-  - Road
->>>>>>> 310ab849e7625bdb40aba721f7ddeb3189d3b2df
   - 
   - 
   - 

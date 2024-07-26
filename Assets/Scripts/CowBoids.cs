@@ -143,11 +143,11 @@ public class CowBoids : MonoBehaviour
         dirTarget = vTarget.normalized * targetMultiplier;
         dirAvoidQueen = vAvoidQueen.normalized * avoidQueenMultiplier;
 
-        finalV = dirCenter + dirAvoid + dirFollow + dirTarget + dirVelocity + dirAvoidDog + dirAvoidQueen;
+        finalV = dirCenter + dirAvoid + dirFollow + dirTarget + dirVelocity + dirAvoidQueen;
 
-        print(finalV.magnitude);
         if (finalV.magnitude > speed) finalV = finalV.normalized * speed;
-        print(finalV.magnitude);
+
+        finalV += dirAvoidDog;
 
         float yV = rb.velocity.y;
 

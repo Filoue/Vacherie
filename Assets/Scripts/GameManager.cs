@@ -7,12 +7,19 @@ public class GameManager : MonoBehaviour
 {
     private int flowerCount;
     [SerializeField] private int winFlowerCount;
+    [SerializeField] private Transform endTarget;
+    [SerializeField] private Transform endCameraTarget;
+    [SerializeField] private float finishTimer;
     [SerializeField] private Transform flowerPanel;
     [SerializeField] private GameObject UIFlowerPrefab;
+    private EntitiesManager entitiesManager;
+    private CameraFollow mainCameraScript;
     private bool gameOver;
 
     private void Start()
     {
+        entitiesManager = GameObject.FindWithTag("EntitiesManager").GetComponent<EntitiesManager>();
+        mainCameraScript = GameObject.FindWithTag("MainCamera").GetComponent<CameraFollow>();
         flowerCount = 0;
     }
 
@@ -30,9 +37,12 @@ public class GameManager : MonoBehaviour
         Instantiate(UIFlowerPrefab, flowerPanel);
     }
 
-    private void FinishLevel()
+    public void FinishLevel()
     {
-
+        print("Finished level");
+        entitiesManager.queen.GetComponent<CowBoids>().target = endTarget;
+        mainCameraScript.newTarget(endCameraTarget);
+        endCameraTarget.GetComponent<LerpPosition>().StartMoving();
     }
 
     private void Win()
