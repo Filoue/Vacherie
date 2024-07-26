@@ -6,21 +6,32 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     private int flowerCount;
-    [SerializeField] private int winFlowerCount;
+    [SerializeField] private Transform endDogTarget;
+    [SerializeField] private Transform endQueenTarget;
+    [SerializeField] private Transform endCameraTarget;
+    [SerializeField] private float finishTimer;
     [SerializeField] private Transform flowerPanel;
     [SerializeField] private GameObject UIFlowerPrefab;
+    private EntitiesManager entitiesManager;
+    private CameraFollow mainCameraScript;
     private bool gameOver;
+    private bool finishing;
 
     private void Start()
     {
+        entitiesManager = GameObject.FindWithTag("EntitiesManager").GetComponent<EntitiesManager>();
+        mainCameraScript = GameObject.FindWithTag("MainCamera").GetComponent<CameraFollow>();
         flowerCount = 0;
     }
 
     private void Update()
     {
-        if (flowerCount >= winFlowerCount)
+        if (finishing)
         {
-            FinishLevel();
+            foreach (var dog in entitiesManager.dogs)
+            {
+                dog.GetComponent<DogAI>().GoToTarget(endDogTarget.transform.position);
+            }
         }
     }
 
@@ -30,9 +41,16 @@ public class GameManager : MonoBehaviour
         Instantiate(UIFlowerPrefab, flowerPanel);
     }
 
-    private void FinishLevel()
+    public void FinishLevel()
     {
-
+        if (!finishing)
+        {
+            finishing = true;
+            entitiesManager.queen.GetComponent<CowBoids>().target = endQueenTarget;
+            mainCameraScript.newTarget(endCameraTarget, true);
+            endCameraTarget.GetComponent<LerpPosition>().StartMoving();
+            Invoke("Win", finishTimer);
+        }
     }
 
     private void Win()

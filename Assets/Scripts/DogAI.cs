@@ -9,6 +9,7 @@ public class DogAI : MonoBehaviour
     public Vector2 target;
     private Vector2 dir;
     public float speed;
+    public float walkingSpeed;
     private bool goToTarget;
     public float stopDistance = 0.05f;
     private EntitiesManager entitiesManager;
@@ -16,6 +17,9 @@ public class DogAI : MonoBehaviour
     public float neigbourgRange = 7.0f;
     private Vector2 vSpeed;
     private int groupSize = 0;
+    public Transform dogVisuals;
+    public SpriteRenderer spriteRenderer;
+    public float flipThreshold;
 
     private void Start()
     {
@@ -30,11 +34,20 @@ public class DogAI : MonoBehaviour
         vSpeed = Vector2.zero;
         groupSize = 0;
 
+        if (rb.velocity.x >= flipThreshold)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (rb.velocity.x <= -flipThreshold)
+        {
+            spriteRenderer.flipX = true;
+        }
+
         foreach (var cow in entitiesManager.cows)
         {
             if (cow != gameObject)
             {
-                cowDistance = Vector3.Distance(transform.localPosition, cow.transform.localPosition);
+                cowDistance = Vector3.Distance(transform.position, cow.transform.position);
 
                 if (cowDistance <= neigbourgRange)
                 {
@@ -74,6 +87,7 @@ public class DogAI : MonoBehaviour
 
             float yV = rb.velocity.y;
             rb.velocity = new Vector3(dir.x, 0, dir.y);
+            if (rb.velocity.magnitude > walkingSpeed) rb.velocity = rb.velocity.normalized * walkingSpeed;
             rb.velocity = new Vector3(rb.velocity.x, yV, rb.velocity.z);
         }
     }
@@ -84,7 +98,7 @@ public class DogAI : MonoBehaviour
         goToTarget = true;
     }
 
-    private void Die()
+    public void Die()
     {
         entitiesManager.dogs.Remove(gameObject);
         Destroy(gameObject);
