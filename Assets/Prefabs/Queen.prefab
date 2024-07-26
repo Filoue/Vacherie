@@ -185,7 +185,7 @@ MonoBehaviour:
   speed: 20
   neigbourgRange: 5
   avoidRange: 2
-  dogAvoidRange: 5
+  dogAvoidRange: 3
   queenAvoidRange: 2
   queenVisibilityRange: 10
   toCenterMultiplier: 0

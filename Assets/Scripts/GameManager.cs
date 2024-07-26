@@ -17,13 +17,19 @@ public class GameManager : MonoBehaviour
     private bool gameOver;
     public bool finishing;
     private bool pauseMenu;
-    public GameObject PauseMenuObject;
+    public GameObject pauseMenuObject;
+    public GameObject winMenu;
+    public Animator fadePanel;
 
     private void Start()
     {
         entitiesManager = GameObject.FindWithTag("EntitiesManager").GetComponent<EntitiesManager>();
         mainCameraScript = GameObject.FindWithTag("MainCamera").GetComponent<CameraFollow>();
         flowerCount = 0;
+
+        fadePanel.Play("FadeOut");
+        pauseMenuObject.SetActive(false);
+        pauseMenu = false;
     }
 
     private void Update()
@@ -73,7 +79,8 @@ public class GameManager : MonoBehaviour
 
     private void Win()
     {
-
+        PauseTime();
+        winMenu.SetActive(true);
     }
 
     public void Lose()
@@ -85,17 +92,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void PauseMenu()
+    public void PauseMenu()
     {
         if (pauseMenu)
         {
             pauseMenu = false;
-            PauseTime();
+            pauseMenuObject.SetActive(false);
+            ResumeTime();
         }
         else
         {
             pauseMenu = true;
-            ResumeTime();
+            pauseMenuObject.SetActive(true);
+            PauseTime();
         }
     }
 
@@ -107,5 +116,10 @@ public class GameManager : MonoBehaviour
     private void ResumeTime()
     {
         Time.timeScale = 1;
+    }
+
+    public void ScreenFadeOut()
+    {
+        fadePanel.Play("FadeIn");
     }
 }
