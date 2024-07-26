@@ -26,17 +26,17 @@ PrefabInstance:
     - target: {fileID: 3639239970288819779, guid: a68f96c9bd9fd924cba552263fef8879,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.06
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3639239970288819779, guid: a68f96c9bd9fd924cba552263fef8879,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.01
+      value: 0.93
       objectReference: {fileID: 0}
     - target: {fileID: 3639239970288819779, guid: a68f96c9bd9fd924cba552263fef8879,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.02
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3997999388174090748, guid: a68f96c9bd9fd924cba552263fef8879,
         type: 3}
@@ -47,12 +47,12 @@ PrefabInstance:
     - target: {fileID: 4242002962499646544, guid: a68f96c9bd9fd924cba552263fef8879,
         type: 3}
       propertyPath: m_Name
-      value: ChaletNiv2 Variant
+      value: ChaletNiv2
       objectReference: {fileID: 0}
     - target: {fileID: 8841533384309139050, guid: a68f96c9bd9fd924cba552263fef8879,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.7
+      value: 24.93
       objectReference: {fileID: 0}
     - target: {fileID: 8841533384309139050, guid: a68f96c9bd9fd924cba552263fef8879,
         type: 3}

@@ -23,6 +23,10 @@ public class CowBoids : MonoBehaviour
     private Vector2 vCenter, vAvoid, vSpeed, vTarget, vDog, vAvoidQueen;
     private Transform queen;
     private GameManager gameManager;
+    public Transform cowVisuals;
+    public Transform rightRotation, leftRotation;
+    public SpriteRenderer spriteRenderer;
+    public float flipThreshold;
 
     private void Start()
     {
@@ -45,6 +49,17 @@ public class CowBoids : MonoBehaviour
         vAvoid = Vector2.zero;
         vDog = Vector2.zero;
         vAvoidQueen = Vector2.zero;
+
+        if (rb.velocity.x >= flipThreshold)
+        {
+            cowVisuals.position = rightRotation.position;
+            spriteRenderer.flipX = false;
+        }
+        else if (rb.velocity.x <= -flipThreshold)
+        {
+            cowVisuals.position = leftRotation.position;
+            spriteRenderer.flipX = true;
+        }
 
         if (queen == null)
         {

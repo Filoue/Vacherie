@@ -14,6 +14,6 @@ public class ChangeCameraTarget : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Cow" || other.tag == "Dog" || other.tag == "Queen") mainCamera.GetComponent<CameraFollow>().newTarget(newTarget);
+        if (other.tag == "Cow" || other.tag == "Dog" || other.tag == "Queen") mainCamera.GetComponent<CameraFollow>().newTarget(newTarget, false);
     }
 }
