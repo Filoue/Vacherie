@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 5672627183806670588}
   - component: {fileID: 8518659380869853487}
   - component: {fileID: 4327649226621515308}
+  - component: {fileID: 8043123588447686391}
+  - component: {fileID: 5243033839400386047}
+  - component: {fileID: 6068274637927490255}
   m_Layer: 0
   m_Name: Cow
   m_TagString: Cow
@@ -132,6 +135,52 @@ MonoBehaviour:
   avoidQueenMultiplier: 150
   target: {fileID: 0}
   followQueen: 0
+--- !u!114 &8043123588447686391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3482171089844306403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8d63fe517754f4d972d1f9ce694cb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSourceManager: {fileID: 0}
+  cowNoiseVolume: 0.5
+  baseChance: 0.1
+--- !u!114 &5243033839400386047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3482171089844306403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca6e6c2c8c074344a169de4cd4b26cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume: 1
+--- !u!114 &6068274637927490255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3482171089844306403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2197861b108b89a44a776b70a6f86952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dogSoundPool: {fileID: 0}
+  gnomeSoundPool: {fileID: 0}
+  cowBellSoundPool: {fileID: 0}
+  cowNoiseSoundPool: {fileID: 11400000, guid: ffa9c29d919ed9446927c86b001f944c, type: 2}
+  poof: {fileID: 0}
+  wind: {fileID: 0}
 --- !u!1 &8988744478917198679
 GameObject:
   m_ObjectHideFlags: 0

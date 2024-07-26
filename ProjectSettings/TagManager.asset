@@ -9,6 +9,9 @@ TagManager:
   - Obstacle
   - EntitiesManager
   - Road
+  - GameManager
+  - Pointer
+  - Queen
   layers:
   - Default
   - TransparentFX

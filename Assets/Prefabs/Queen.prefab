@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 7672628670897765750}
   - component: {fileID: 2415472053082450443}
   - component: {fileID: 7467509488256237791}
+  - component: {fileID: 8028769315363642330}
+  - component: {fileID: 6412738278450279661}
+  - component: {fileID: 57093574481522288}
   m_Layer: 0
   m_Name: Queen
   m_TagString: Queen
@@ -133,6 +136,51 @@ MonoBehaviour:
   avoidQueenMultiplier: 150
   target: {fileID: 3455051459369999343}
   followQueen: 0
+--- !u!114 &8028769315363642330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2482079286315508139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca6e6c2c8c074344a169de4cd4b26cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume: 0.5
+--- !u!114 &6412738278450279661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2482079286315508139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2197861b108b89a44a776b70a6f86952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dogSoundPool: {fileID: 0}
+  gnomeSoundPool: {fileID: 0}
+  cowBellSoundPool: {fileID: 11400000, guid: 8ccdeacf4442a6340a2ac148f673af81, type: 2}
+  cowNoiseSoundPool: {fileID: 0}
+  poof: {fileID: 0}
+  wind: {fileID: 0}
+--- !u!114 &57093574481522288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2482079286315508139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e592aa04bc4fd4c98512cfa426d92a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSourceManager: {fileID: 6412738278450279661}
+  cowBellVolume: 0.5
 --- !u!1 &3316956545966348575
 GameObject:
   m_ObjectHideFlags: 0

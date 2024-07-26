@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c495d36861423f743b013d1ab539b6d3, type: 3}
+  m_Name: DogSoundPool
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 08a1faf437b91124a852cf3866f5bd83, type: 3}
+  - {fileID: 8300000, guid: c8d8b59075fcd3545b2fa7e62e645dc0, type: 3}
+  - {fileID: 8300000, guid: a2c3740fecf616d4890e58aa11eda496, type: 3}
+  - {fileID: 8300000, guid: 34fbf7b5570ee6d4c804ee7bcc791ddb, type: 3}
+  - {fileID: 8300000, guid: 491591d735fa7a1408616e83e7ba3838, type: 3}
