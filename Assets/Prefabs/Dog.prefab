@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 6036488422090704903}
   - component: {fileID: 6480156825411668539}
   - component: {fileID: 1169611580525371660}
+  - component: {fileID: 2365992470114368782}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Dog
@@ -223,5 +224,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dogSoundPool: {fileID: 11400000, guid: e12fd3c8de5928d4eb8664add8f93a8d, type: 2}
   gnomeSoundPool: {fileID: 0}
+  cowBellSoundPool: {fileID: 0}
+  cowNoiseSoundPool: {fileID: 0}
   poof: {fileID: 0}
   wind: {fileID: 0}
+--- !u!114 &2365992470114368782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502784532161267116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2b6dde648388b4197ff5fc4374366f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnObject: {fileID: 4797474728583543797, guid: 8dea932e74b8d354a83ebbf18413f492,
+    type: 3}
+  Road:
+    serializedVersion: 2
+    m_Bits: 8
+  spawnInterval: 0.5
