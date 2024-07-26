@@ -51,6 +51,13 @@ public class GameManager : MonoBehaviour
         {
             finishing = true;
             entitiesManager.queen.GetComponent<CowBoids>().target = endQueenTarget;
+
+            foreach (var cow in entitiesManager.cows)
+            {
+                cow.GetComponent<CowBoids>().followQueen = false;
+                cow.GetComponent<CowBoids>().target = endQueenTarget;
+            }
+
             mainCameraScript.newTarget(endCameraTarget, true);
             endCameraTarget.GetComponent<LerpPosition>().StartMoving();
             Invoke("Win", finishTimer);
