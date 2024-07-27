@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Final/Menu Option.unity
     guid: 07b6d34e148d7e14fabe4c02b2ee3c70
   - enabled: 1
-    path: Assets/Scenes/Final/Tutorial.unity
+    path: Assets/Scenes/Final/Level1.unity
     guid: 3ee66c5b897f6ba47bed6e7f55ff38cb
+  - enabled: 1
+    path: Assets/Scenes/Final/LevelTwo.unity
+    guid: 1f7223f1d56e52e42bee71f6fb24cef0
   m_configObjects: {}

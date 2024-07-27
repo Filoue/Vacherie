@@ -259,7 +259,7 @@ MonoBehaviour:
   target: {x: 0, y: 0}
   maxSpeed: 200
   walkingSpeed: 70
-  stopDistance: 0.1
+  stopDistance: 0.2
   neigbourgRange: 7
   dogVisuals: {fileID: 3286242184476211820}
   spriteRenderer: {fileID: 210388754482411122}
