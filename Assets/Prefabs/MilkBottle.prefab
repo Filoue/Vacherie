@@ -244,6 +244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7832603731978668353}
   - component: {fileID: 696847964957076346}
+  - component: {fileID: 3998530690726232973}
   - component: {fileID: 6452850766966923224}
   - component: {fileID: 4057622227628055004}
   - component: {fileID: 7692761018399502095}
@@ -292,6 +293,22 @@ MonoBehaviour:
   fullSound: {fileID: 7534314675649230378}
   milkgnomePrefab: {fileID: 5998899658727791308, guid: 280160a096a7b52429d6194b1971a804,
     type: 3}
+--- !u!114 &3998530690726232973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2878681719475147487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2500974678d8a142b8746762dff60fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entitiesManager: {fileID: 1356002714255562503, guid: 6073b13fb2159b94aababfb052e85894,
+    type: 3}
+  staminaSlider: {fileID: 7753262506606016370}
+  cowValueMultiplier: 10
 --- !u!82 &6452850766966923224
 AudioSource:
   m_ObjectHideFlags: 0
