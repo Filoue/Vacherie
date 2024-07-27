@@ -16,10 +16,12 @@ public class GameManager : MonoBehaviour
     private CameraFollow mainCameraScript;
     private bool gameOver;
     public bool finishing;
-    private bool pauseMenu;
+    public bool pauseMenu;
     public GameObject pauseMenuObject;
     public GameObject winMenu;
+    public GameObject gameoverMenu;
     public Animator fadePanel;
+
 
     private void Start()
     {
@@ -30,6 +32,7 @@ public class GameManager : MonoBehaviour
         fadePanel.Play("FadeOut");
         pauseMenuObject.SetActive(false);
         pauseMenu = false;
+        gameoverMenu.SetActive(false);
     }
 
     private void Update()
@@ -87,8 +90,9 @@ public class GameManager : MonoBehaviour
     {
         if (!gameOver)
         {
-            print("Lol you lost... skill issue");
             gameOver = true;
+            PauseTime();
+            gameoverMenu.SetActive(true);
         }
     }
 

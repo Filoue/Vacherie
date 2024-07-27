@@ -16,8 +16,11 @@ public class CameraFollow : MonoBehaviour
 
     private void Update()
     {
-        if (!animated) transform.position = new Vector3(0, target.position.y, target.position.z) + offset;
-        else transform.position = target.position + offset;
+        if (target != null)
+        {
+            if (!animated) transform.position = new Vector3(0, target.position.y, target.position.z) + offset;
+            else transform.position = target.position + offset;
+        }
     }
 
     public void newTarget(Transform newTarget, bool animate)

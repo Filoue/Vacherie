@@ -19,6 +19,9 @@ public class Pointer : MonoBehaviour
     public float yodelDistance;
 
     private bool canDing;
+    private bool paused;
+
+    private GameManager gameManager;
 
     private void Start()
     {
@@ -27,10 +30,14 @@ public class Pointer : MonoBehaviour
         canDing = true;
 
         tempYodel = new List<AudioClip>();
+
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
     }
 
     private void Update()
     {
+        paused = gameManager.pauseMenu;
+
         if (NearestDogDistance(transform.position) < dissapearDistance)
         {
             GameObject poofInstance = Instantiate(smokePoofPrefab, transform.position, Quaternion.identity);
@@ -48,7 +55,7 @@ public class Pointer : MonoBehaviour
         visuals.SetActive(true);
         transform.position = position;
 
-        if (canDing)
+        if (canDing && !paused)
         {
             canDing = false;
             Invoke("CanDingAgain", dingCooldown);

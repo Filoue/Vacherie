@@ -81,12 +81,16 @@ public class DogAI : MonoBehaviour
         }
         else
         {
+            /*
             dir = vSpeed;
 
             float yV = rb.velocity.y;
             rb.velocity = new Vector3(dir.x, 0, dir.y);
             if (rb.velocity.magnitude > walkingSpeed) rb.velocity = rb.velocity.normalized * walkingSpeed;
             rb.velocity = new Vector3(rb.velocity.x, yV, rb.velocity.z);
+            */
+
+            rb.velocity = Vector3.zero;
         }
 
         if (rb.velocity.x >= flipThreshold)
