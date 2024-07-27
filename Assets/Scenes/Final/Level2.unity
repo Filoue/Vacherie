@@ -1673,6 +1673,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1614118809978450681}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &546957122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 546957123}
+  m_Layer: 0
+  m_Name: KillLimit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &546957123
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546957122}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 89.47}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2063209573}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &569865349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6427,6 +6458,7 @@ Transform:
   m_Children:
   - {fileID: 241189484}
   - {fileID: 1070384743}
+  - {fileID: 546957123}
   m_Father: {fileID: 1389630246}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2120658069
@@ -6896,6 +6928,12 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1642445648}
+    - target: {fileID: 3340067052975276962, guid: 01f7df7739cf654408fa2d794e8dc42e,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5fd2f3d024331ce4cbcc9bd8a77fdcfc,
+        type: 3}
     - target: {fileID: 3881582818197131603, guid: 01f7df7739cf654408fa2d794e8dc42e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -6971,11 +7009,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 7934556515268649137, guid: 01f7df7739cf654408fa2d794e8dc42e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01f7df7739cf654408fa2d794e8dc42e, type: 3}
+--- !u!114 &8081648870977845685 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7122569863770972450, guid: 01f7df7739cf654408fa2d794e8dc42e,
+    type: 3}
+  m_PrefabInstance: {fileID: 8081648870977845684}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!224 &8081648870977845686 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6000482152852589506, guid: 01f7df7739cf654408fa2d794e8dc42e,
+    type: 3}
+  m_PrefabInstance: {fileID: 8081648870977845684}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8709790334178587036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6996,6 +7057,16 @@ PrefabInstance:
       objectReference: {fileID: 47778004}
     - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
         type: 3}
+      propertyPath: killLimit
+      value: 
+      objectReference: {fileID: 546957123}
+    - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 8081648870977845685}
+    - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
+        type: 3}
       propertyPath: flowerPanel
       value: 
       objectReference: {fileID: 1043959845}
@@ -7014,6 +7085,11 @@ PrefabInstance:
       propertyPath: endQueenTarget
       value: 
       objectReference: {fileID: 134944082}
+    - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
+        type: 3}
+      propertyPath: winFlowerPanel
+      value: 
+      objectReference: {fileID: 8081648870977845686}
     - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
         type: 3}
       propertyPath: endCameraTarget

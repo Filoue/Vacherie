@@ -13723,6 +13723,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MilkBottle
       objectReference: {fileID: 0}
+    - target: {fileID: 3998530690726232973, guid: a50de4e1e28fa2545bae558091409599,
+        type: 3}
+      propertyPath: milkValueMultiplier
+      value: 16.666666
+      objectReference: {fileID: 0}
     - target: {fileID: 6620202132099034479, guid: a50de4e1e28fa2545bae558091409599,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -13736,12 +13741,12 @@ PrefabInstance:
     - target: {fileID: 7832603731978668353, guid: a50de4e1e28fa2545bae558091409599,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 143.47914
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7832603731978668353, guid: a50de4e1e28fa2545bae558091409599,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 370.01688
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7832603731978668353, guid: a50de4e1e28fa2545bae558091409599,
         type: 3}
@@ -13767,6 +13772,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7832603731978668353, guid: a50de4e1e28fa2545bae558091409599,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -150
+      objectReference: {fileID: 0}
+    - target: {fileID: 7832603731978668353, guid: a50de4e1e28fa2545bae558091409599,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 86
       objectReference: {fileID: 0}
     - target: {fileID: 7832603731978668353, guid: a50de4e1e28fa2545bae558091409599,
         type: 3}
@@ -13803,8 +13818,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a50de4e1e28fa2545bae558091409599, type: 3}
---- !u!4 &2055688988 stripped
-Transform:
+--- !u!224 &2055688988 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 7832603731978668353, guid: a50de4e1e28fa2545bae558091409599,
     type: 3}
   m_PrefabInstance: {fileID: 2055688987}

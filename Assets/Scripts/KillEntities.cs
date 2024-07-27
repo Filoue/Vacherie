@@ -9,4 +9,10 @@ public class KillEntities : MonoBehaviour
         if (other.tag == "Cow" || other.tag == "Queen") other.GetComponent<CowBoids>().Die();
         if (other.tag == "Dog") other.GetComponent<DogAI>().Die();
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Cow" || other.tag == "Queen") other.GetComponent<CowBoids>().Die();
+        if (other.tag == "Dog") other.GetComponent<DogAI>().Die();
+    }
 }

@@ -1,5 +1,6 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform endCameraTarget;
     [SerializeField] private float finishTimer;
     [SerializeField] private Transform flowerPanel;
+    [SerializeField] private Transform winFlowerPanel;
     [SerializeField] private GameObject UIFlowerPrefab;
     private EntitiesManager entitiesManager;
     private CameraFollow mainCameraScript;
@@ -20,8 +22,8 @@ public class GameManager : MonoBehaviour
     public GameObject gameoverMenu;
     public Animator fadePanel;
     private SoundManager soundManager;
-
-    public GameObject milkBottle;
+    public TextMeshProUGUI scoreText;
+    public Transform killLimit;
 
     private void Start()
     {
@@ -37,12 +39,6 @@ public class GameManager : MonoBehaviour
         soundManager = GameObject.FindWithTag("Travel").GetComponent<SoundManager>();
 
         soundManager.PlayGameMusic();
-
-
-        if (milkBottle != null)
-        {
-            milkBottle.SetActive(false);
-        }
     }
 
     private void Update()
@@ -62,6 +58,7 @@ public class GameManager : MonoBehaviour
     {
         flowerCount++;
         Instantiate(UIFlowerPrefab, flowerPanel);
+        Instantiate(UIFlowerPrefab, winFlowerPanel);
     }
 
     public void FinishLevel()
@@ -95,14 +92,7 @@ public class GameManager : MonoBehaviour
         PauseTime();
         soundManager.PlayEndMusic();
         winMenu.SetActive(true);
-
-        // Make the MilkBottle visible and initialize CowMilked script
-        if (milkBottle != null)
-        {
-            milkBottle.SetActive(true);
-            CowMilked cowMilked = milkBottle.GetComponent<CowMilked>();
-            cowMilked.Initialize();
-        }
+        SetScore();
     }
 
     public void Lose()
@@ -148,5 +138,19 @@ public class GameManager : MonoBehaviour
     public void ScreenFadeOut()
     {
         fadePanel.Play("FadeIn");
+    }
+
+    public void SetScore()
+    {
+        int removeToScore = 0;
+        for (int i = 0; i < entitiesManager.cows.Count; i++)
+        {
+            if (entitiesManager.cows[i].transform.position.z < killLimit.position.z)
+            {
+                removeToScore++;
+            }
+        }
+
+        scoreText.text = (entitiesManager.cows.Count - removeToScore).ToString();
     }
 }

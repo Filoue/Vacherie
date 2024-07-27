@@ -49,6 +49,7 @@ MonoBehaviour:
   endCameraTarget: {fileID: 0}
   finishTimer: 20
   flowerPanel: {fileID: 0}
+  winFlowerPanel: {fileID: 0}
   UIFlowerPrefab: {fileID: 1439594889550617051, guid: 7c92f2d9ee3d87447b29ba3c2e0fa112,
     type: 3}
   finishing: 0
@@ -57,7 +58,5 @@ MonoBehaviour:
   winMenu: {fileID: 0}
   gameoverMenu: {fileID: 0}
   fadePanel: {fileID: 0}
-  ambient: {fileID: -9191725042684772736, guid: e3934321d799aae4dad4db1f54d327ee,
-    type: 2}
-  entities: {fileID: 4659970661231649150, guid: e3934321d799aae4dad4db1f54d327ee,
-    type: 2}
+  scoreText: {fileID: 0}
+  killLimit: {fileID: 0}
