@@ -15,6 +15,8 @@ public class MilkFill : MonoBehaviour
     private bool twoThirdsSoundPlayed = false;
     private bool fullSoundPlayed = false;
 
+    private float targetValue = 0; // The target value to fill up to
+
     private void Start()
     {
         staminaSlider.value = 0;
@@ -22,7 +24,7 @@ public class MilkFill : MonoBehaviour
 
     private void Update()
     {
-        if (staminaSlider.value < staminaSlider.maxValue)
+        if (staminaSlider.value < targetValue)
         {
             staminaSlider.value += fillSpeed * Time.deltaTime;
 
@@ -32,19 +34,19 @@ public class MilkFill : MonoBehaviour
                 startSoundPlayed = true;
             }
 
-            if (!oneThirdSoundPlayed && staminaSlider.value >= 33)
+            if (!oneThirdSoundPlayed && staminaSlider.value >= targetValue / 3)
             {
                 oneThirdSound.Play();
                 oneThirdSoundPlayed = true;
             }
 
-            if (!twoThirdsSoundPlayed && staminaSlider.value >= 66)
+            if (!twoThirdsSoundPlayed && staminaSlider.value >= (2 * targetValue) / 3)
             {
                 twoThirdsSound.Play();
                 twoThirdsSoundPlayed = true;
             }
 
-            if (!fullSoundPlayed && staminaSlider.value >= 95)
+            if (!fullSoundPlayed && staminaSlider.value >= targetValue)
             {
                 fullSound.Play();
                 fullSoundPlayed = true;
@@ -53,5 +55,10 @@ public class MilkFill : MonoBehaviour
                 milkgnome.transform.localScale = new Vector3(3, 3, 3);
             }
         }
+    }
+
+    public void SetTargetValue(float value)
+    {
+        targetValue = value;
     }
 }

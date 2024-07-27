@@ -308,7 +308,12 @@ MonoBehaviour:
   entitiesManager: {fileID: 1356002714255562503, guid: 6073b13fb2159b94aababfb052e85894,
     type: 3}
   staminaSlider: {fileID: 7753262506606016370}
-  cowValueMultiplier: 10
+  milkValueMultiplier: 10
+  spawnPosition: {x: 0, y: 0, z: 0}
+  spacing: 2
+  cowPrefab: {fileID: 3482171089844306403, guid: 5c61d61d71fbfd54d92adbcd5e1a8f73,
+    type: 3}
+  milkFill: {fileID: 696847964957076346}
 --- !u!82 &6452850766966923224
 AudioSource:
   m_ObjectHideFlags: 0
