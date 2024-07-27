@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public Animator fadePanel;
     private SoundManager soundManager;
 
+    public GameObject milkBottle;
 
     private void Start()
     {
@@ -36,6 +37,12 @@ public class GameManager : MonoBehaviour
         soundManager = GameObject.FindWithTag("Travel").GetComponent<SoundManager>();
 
         soundManager.PlayGameMusic();
+
+
+        if (milkBottle != null)
+        {
+            milkBottle.SetActive(false);
+        }
     }
 
     private void Update()
@@ -88,6 +95,14 @@ public class GameManager : MonoBehaviour
         PauseTime();
         soundManager.PlayEndMusic();
         winMenu.SetActive(true);
+
+        // Make the MilkBottle visible and initialize CowMilked script
+        if (milkBottle != null)
+        {
+            milkBottle.SetActive(true);
+            CowMilked cowMilked = milkBottle.GetComponent<CowMilked>();
+            cowMilked.Initialize();
+        }
     }
 
     public void Lose()

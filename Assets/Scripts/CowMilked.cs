@@ -6,7 +6,7 @@ public class CowMilked : MonoBehaviour
 {
     public EntitiesManager entitiesManager;
     public Slider staminaSlider;
-    public float milkValueMultiplier = 10f; // Configurable value for multiplier per cow (score)
+    public float milkValueMultiplier = 10f; // Configurable value for the score
 
     // Variables for saving the number of cows and spawning configuration
     private int savedNumberOfCows;
@@ -15,9 +15,30 @@ public class CowMilked : MonoBehaviour
 
 
     public GameObject cowPrefab;
-    public MilkFill milkFill; // Reference to MilkFill script
+    public MilkFill milkFill;
 
     void Start()
+    {
+        if (entitiesManager == null)
+        {
+            entitiesManager = FindObjectOfType<EntitiesManager>();
+        }
+
+        if (staminaSlider == null)
+        {
+            staminaSlider = GetComponentInChildren<Slider>();
+        }
+
+        if (milkFill == null)
+        {
+            milkFill = FindObjectOfType<MilkFill>();
+        }
+
+        UpdateStaminaSlider();
+        SaveNumberOfCows();
+    }
+
+    public void Initialize()
     {
         if (entitiesManager == null)
         {
