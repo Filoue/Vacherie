@@ -57,3 +57,7 @@ MonoBehaviour:
   winMenu: {fileID: 0}
   gameoverMenu: {fileID: 0}
   fadePanel: {fileID: 0}
+  ambient: {fileID: -9191725042684772736, guid: e3934321d799aae4dad4db1f54d327ee,
+    type: 2}
+  entities: {fileID: 4659970661231649150, guid: e3934321d799aae4dad4db1f54d327ee,
+    type: 2}

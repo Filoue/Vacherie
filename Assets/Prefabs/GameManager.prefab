@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 383522538637305512}
   - component: {fileID: 184095679511147135}
   - component: {fileID: 4724012314728244143}
+  - component: {fileID: 4133226407469191507}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: Travel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,9 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71afabc3fc919144a96c36ca651f4ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: {fileID: 4724012314728244143}
-  gameMusic: {fileID: 0}
-  ambientSounds: {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: e3934321d799aae4dad4db1f54d327ee, type: 2}
+  audioSource: {fileID: 4724012314728244143}
+  gameMusic: {fileID: 8300000, guid: d377037321cf3c943bbcfacce3b5a476, type: 3}
+  menuMusic: {fileID: 8300000, guid: 36dec373a21c4a445bd775ac41a3437d, type: 3}
+  endMusic: {fileID: 8300000, guid: 7f351758e8cd19844848c437af0e7bc1, type: 3}
 --- !u!82 &4724012314728244143
 AudioSource:
   m_ObjectHideFlags: 0
@@ -57,12 +60,13 @@ AudioSource:
   m_GameObject: {fileID: 2108585790986304494}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8601754863647006330, guid: e3934321d799aae4dad4db1f54d327ee,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 36dec373a21c4a445bd775ac41a3437d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -144,3 +148,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4133226407469191507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108585790986304494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee14555d45475e14d950c9ffa7b76f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

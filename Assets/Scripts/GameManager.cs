@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject winMenu;
     public GameObject gameoverMenu;
     public Animator fadePanel;
+    private SoundManager soundManager;
 
 
     private void Start()
@@ -33,6 +32,10 @@ public class GameManager : MonoBehaviour
         pauseMenuObject.SetActive(false);
         pauseMenu = false;
         gameoverMenu.SetActive(false);
+        winMenu.SetActive(false);
+        soundManager = GameObject.FindWithTag("Travel").GetComponent<SoundManager>();
+
+        soundManager.PlayGameMusic();
     }
 
     private void Update()
@@ -60,6 +63,7 @@ public class GameManager : MonoBehaviour
         {
             finishing = true;
             entitiesManager.queen.GetComponent<CowBoids>().target = endQueenTarget;
+            soundManager.PlayEndMusic();
 
             foreach (var cow in entitiesManager.cows)
             {
@@ -115,11 +119,15 @@ public class GameManager : MonoBehaviour
     private void PauseTime()
     {
         Time.timeScale = 0;
+        soundManager.ToggleAmbient();
+        soundManager.ToggleEntities();
     }
 
     private void ResumeTime()
     {
         Time.timeScale = 1;
+        soundManager.ToggleAmbient();
+        soundManager.ToggleEntities();
     }
 
     public void ScreenFadeOut()
