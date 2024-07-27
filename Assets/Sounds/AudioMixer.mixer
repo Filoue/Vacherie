@@ -82,6 +82,10 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
+  - guid: 09b8acaf18193bc4e96084dc749eb0a2
+    name: Ambient
+  - guid: 70071b86b85ebce4ca1708a04ce30ab5
+    name: Entities
   - guid: 09f9385aef2fda1419d1f9b3fa6b605c
     name: MasterVolume
   m_AudioMixerGroupViews:

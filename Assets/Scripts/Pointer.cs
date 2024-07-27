@@ -11,7 +11,6 @@ public class Pointer : MonoBehaviour
     public float dissapearDistance;
     public AudioSource audioSource;
     public AudioClip bell;
-    public AudioClip poof;
     public List<AudioClip> yodel;
     private List<AudioClip> tempYodel;
     public float pitchChangeRange;
@@ -61,8 +60,6 @@ public class Pointer : MonoBehaviour
             Invoke("CanDingAgain", dingCooldown);
             audioSource.pitch = Random.Range(1 - pitchChangeRange, 1 + pitchChangeRange);
             audioSource.PlayOneShot(bell);
-            audioSource.pitch = Random.Range(1 - pitchChangeRange, 1 + pitchChangeRange);
-            audioSource.PlayOneShot(poof);
             audioSource.pitch = 1;
             Yodel();
         }

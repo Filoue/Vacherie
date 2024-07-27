@@ -63,7 +63,6 @@ public class GameManager : MonoBehaviour
         {
             finishing = true;
             entitiesManager.queen.GetComponent<CowBoids>().target = endQueenTarget;
-            soundManager.PlayEndMusic();
 
             foreach (var cow in entitiesManager.cows)
             {
@@ -87,6 +86,7 @@ public class GameManager : MonoBehaviour
     private void Win()
     {
         PauseTime();
+        soundManager.PlayEndMusic();
         winMenu.SetActive(true);
     }
 

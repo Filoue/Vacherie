@@ -30,7 +30,7 @@ public class SoundManager : MonoBehaviour
         {
             ambient = false;
             audioMixer.GetFloat("Ambient", out tempAmbient);
-            audioMixer.SetFloat("Ambient", 0);
+            audioMixer.SetFloat("Ambient", Mathf.Log10(0.001f) * 20);
         }
         else
         {
@@ -45,7 +45,7 @@ public class SoundManager : MonoBehaviour
         {
             entities = false;
             audioMixer.GetFloat("Entities", out tempEntities);
-            audioMixer.SetFloat("Entities", 0);
+            audioMixer.SetFloat("Entities", Mathf.Log10(0.001f) * 20);
         }
         else
         {
@@ -57,10 +57,12 @@ public class SoundManager : MonoBehaviour
     public void PlayEndMusic()
     {
         audioSource.clip = endMusic;
+        audioSource.Play();
     }
 
     public void PlayGameMusic()
     {
         audioSource.clip = gameMusic;
+        audioSource.Play();
     }
 }

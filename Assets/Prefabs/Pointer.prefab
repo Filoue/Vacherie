@@ -85,7 +85,6 @@ MonoBehaviour:
   dissapearDistance: 1.5
   audioSource: {fileID: 8655182297771176313}
   bell: {fileID: 8300000, guid: bf2662fd9d5e3f3408200704774e4a31, type: 3}
-  poof: {fileID: 8300000, guid: 01dbd12d721d92e47825c064d7cf95a9, type: 3}
   yodel:
   - {fileID: 8300000, guid: fc4560f72537dab41bb346723885a644, type: 3}
   - {fileID: 8300000, guid: 9d87a6a9a01d99a4cba3dc35876b8e64, type: 3}
@@ -108,7 +107,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bf2662fd9d5e3f3408200704774e4a31, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.184
+  m_Volume: 0.782
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -362,12 +361,12 @@ PrefabInstance:
     - target: {fileID: 8936930646587192614, guid: 224379b4787d6f741a925bcbd13d6a53,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.04
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8936930646587192614, guid: 224379b4787d6f741a925bcbd13d6a53,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.107
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8936930646587192614, guid: 224379b4787d6f741a925bcbd13d6a53,
         type: 3}
