@@ -44,10 +44,6 @@ public class MilkFiller : MonoBehaviour
         // Ensure component is active
         Debug.Log($"MilkFiller is active: {gameObject.activeInHierarchy}");
         Debug.Log($"MilkSlider maxValue: {MilkSlider.maxValue}, MilkSlider value: {MilkSlider.value}");
-
-        // Manually set the slider value to test immediate updates
-        MilkSlider.value = 10;
-        Debug.Log($"MilkSlider manually set to: {MilkSlider.value}");
     }
 
     private void Update()

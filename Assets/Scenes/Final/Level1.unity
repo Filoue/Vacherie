@@ -9689,6 +9689,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1523070105}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1540529081 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 408332872258479115, guid: f4945eb776a25b24aadd8cdc587f4f70,
+    type: 3}
+  m_PrefabInstance: {fileID: 260876593999962720}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1540529090 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3166631802627857838, guid: f4945eb776a25b24aadd8cdc587f4f70,
+    type: 3}
+  m_PrefabInstance: {fileID: 260876593999962720}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540529081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4549ae857e264a847b59ecbbf6943eec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1542605024
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14723,6 +14741,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1642445648}
+    - target: {fileID: 6347840626111750417, guid: f4945eb776a25b24aadd8cdc587f4f70,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393044986582660219, guid: f4945eb776a25b24aadd8cdc587f4f70,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -14737,6 +14760,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484704581976429125, guid: f4945eb776a25b24aadd8cdc587f4f70,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8756756427917564859, guid: f4945eb776a25b24aadd8cdc587f4f70,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15244,9 +15277,19 @@ PrefabInstance:
       objectReference: {fileID: 941085}
     - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
         type: 3}
+      propertyPath: scoreCounter
+      value: 
+      objectReference: {fileID: 1540529081}
+    - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
+        type: 3}
       propertyPath: endQueenTarget
       value: 
       objectReference: {fileID: 134944082}
+    - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
+        type: 3}
+      propertyPath: milkFillScript
+      value: 
+      objectReference: {fileID: 1540529090}
     - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
         type: 3}
       propertyPath: winFlowerPanel
