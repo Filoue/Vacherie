@@ -14739,8 +14739,19 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8484704581976429125, guid: f4945eb776a25b24aadd8cdc587f4f70,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8756756427917564859, guid: f4945eb776a25b24aadd8cdc587f4f70,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
+<<<<<<< Updated upstream
 <<<<<<< HEAD:Assets/Scenes/TestScoreScene.unity
     m_AddedGameObjects: []
 =======
@@ -14750,6 +14761,9 @@ PrefabInstance:
       insertIndex: 0
       addedObject: {fileID: 2055688988}
 >>>>>>> parent of b9bda65 (trying to add the milkscore):Assets/Scenes/Final/TestScoreScene.unity
+=======
+    m_AddedGameObjects: []
+>>>>>>> Stashed changes
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4945eb776a25b24aadd8cdc587f4f70, type: 3}
 --- !u!224 &260876593999962721 stripped
