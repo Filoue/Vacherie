@@ -1606,7 +1606,7 @@ Transform:
   m_GameObject: {fileID: 156852171}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.85, y: 0, z: 76}
+  m_LocalPosition: {x: -3.85, y: 0, z: 34.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13751,6 +13751,120 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2037356286}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2055688987
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 260876593999962721}
+    m_Modifications:
+    - target: {fileID: 2878681719475147487, guid: a50de4e1e28fa2545bae558091409599,
+        type: 3}
+      propertyPath: m_Name
+      value: MilkBottle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3998530690726232973, guid: a50de4e1e28fa2545bae558091409599,
+        type: 3}
+      propertyPath: milkValueMultiplier
+      value: 16.666666
+      objectReference: {fileID: 0}
+    - target: {fileID: 6620202132099034479, guid: a50de4e1e28fa2545bae558091409599,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6620202132099034479, guid: a50de4e1e28fa2545bae558091409599,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7832603731978668353, guid: a50de4e1e28fa2545bae558091409599,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7832603731978668353, guid: a50de4e1e28fa2545bae558091409599,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7832603731978668353, guid: a50de4e1e28fa2545bae558091409599,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -762.03174
+      objectReference: {fileID: 0}
+    - target: {fileID: 7832603731978668353, guid: a50de4e1e28fa2545bae558091409599,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7832603731978668353, guid: a50de4e1e28fa2545bae558091409599,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7832603731978668353, guid: a50de4e1e28fa2545bae558091409599,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7832603731978668353, guid: a50de4e1e28fa2545bae558091409599,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7832603731978668353, guid: a50de4e1e28fa2545bae558091409599,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -150
+      objectReference: {fileID: 0}
+    - target: {fileID: 7832603731978668353, guid: a50de4e1e28fa2545bae558091409599,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 86
+      objectReference: {fileID: 0}
+    - target: {fileID: 7832603731978668353, guid: a50de4e1e28fa2545bae558091409599,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7832603731978668353, guid: a50de4e1e28fa2545bae558091409599,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7832603731978668353, guid: a50de4e1e28fa2545bae558091409599,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809496318822176709, guid: a50de4e1e28fa2545bae558091409599,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809496318822176709, guid: a50de4e1e28fa2545bae558091409599,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809496318822176709, guid: a50de4e1e28fa2545bae558091409599,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a50de4e1e28fa2545bae558091409599, type: 3}
+--- !u!224 &2055688988 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7832603731978668353, guid: a50de4e1e28fa2545bae558091409599,
+    type: 3}
+  m_PrefabInstance: {fileID: 2055688987}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2063209572
 GameObject:
   m_ObjectHideFlags: 0
@@ -14613,7 +14727,7 @@ PrefabInstance:
     - target: {fileID: 7999876925143706333, guid: f4945eb776a25b24aadd8cdc587f4f70,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8484704581976429125, guid: f4945eb776a25b24aadd8cdc587f4f70,
         type: 3}
@@ -14627,9 +14741,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
+<<<<<<< HEAD:Assets/Scenes/TestScoreScene.unity
     m_AddedGameObjects: []
+=======
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5927404643330806265, guid: f4945eb776a25b24aadd8cdc587f4f70,
+        type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 2055688988}
+>>>>>>> parent of b9bda65 (trying to add the milkscore):Assets/Scenes/Final/TestScoreScene.unity
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4945eb776a25b24aadd8cdc587f4f70, type: 3}
+--- !u!224 &260876593999962721 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5927404643330806265, guid: f4945eb776a25b24aadd8cdc587f4f70,
+    type: 3}
+  m_PrefabInstance: {fileID: 260876593999962720}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1151388028348237088
 Transform:
   m_ObjectHideFlags: 0
@@ -14925,7 +15053,7 @@ PrefabInstance:
     - target: {fileID: 3761967681626224460, guid: ec280cf29c03a584a8c349f73f4504b5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 45.1
+      value: -15.31
       objectReference: {fileID: 0}
     - target: {fileID: 3761967681626224460, guid: ec280cf29c03a584a8c349f73f4504b5,
         type: 3}
