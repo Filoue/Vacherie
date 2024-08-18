@@ -193,6 +193,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1356002714255562503, guid: 6073b13fb2159b94aababfb052e85894,
         type: 3}
+      propertyPath: queen
+      value: 
+      objectReference: {fileID: 111174545}
+    - target: {fileID: 1356002714255562503, guid: 6073b13fb2159b94aababfb052e85894,
+        type: 3}
       propertyPath: pointer
       value: 
       objectReference: {fileID: 1917227977}
@@ -1168,6 +1173,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2541449636162681912, guid: cab15f11da12afd469f5443b2b4d8309,
     type: 3}
   m_PrefabInstance: {fileID: 105765282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &111174545 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2482079286315508139, guid: 2593b094709c95c4bb76337e26e3c850,
+    type: 3}
+  m_PrefabInstance: {fileID: 1841594461}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &111383989
 PrefabInstance:
@@ -6981,6 +6992,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1102036837}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1127416282 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7187748565629348686, guid: f4945eb776a25b24aadd8cdc587f4f70,
+    type: 3}
+  m_PrefabInstance: {fileID: 260876593999962720}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1150320736
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7499,6 +7522,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1201192460}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1224188192 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 408332872258479115, guid: f4945eb776a25b24aadd8cdc587f4f70,
+    type: 3}
+  m_PrefabInstance: {fileID: 260876593999962720}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1224188201 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3166631802627857838, guid: f4945eb776a25b24aadd8cdc587f4f70,
+    type: 3}
+  m_PrefabInstance: {fileID: 260876593999962720}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224188192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4549ae857e264a847b59ecbbf6943eec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1243838101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14668,6 +14709,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1642445648}
+    - target: {fileID: 6347840626111750417, guid: f4945eb776a25b24aadd8cdc587f4f70,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6393044986582660219, guid: f4945eb776a25b24aadd8cdc587f4f70,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -14683,13 +14729,41 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8484704581976429125, guid: f4945eb776a25b24aadd8cdc587f4f70,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8756756427917564859, guid: f4945eb776a25b24aadd8cdc587f4f70,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484704581976429125, guid: f4945eb776a25b24aadd8cdc587f4f70,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8756756427917564859, guid: f4945eb776a25b24aadd8cdc587f4f70,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
+<<<<<<< Updated upstream
+<<<<<<< HEAD:Assets/Scenes/TestScoreScene.unity
+    m_AddedGameObjects: []
+=======
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5927404643330806265, guid: f4945eb776a25b24aadd8cdc587f4f70,
         type: 3}
       insertIndex: 0
       addedObject: {fileID: 2055688988}
+>>>>>>> parent of b9bda65 (trying to add the milkscore):Assets/Scenes/Final/TestScoreScene.unity
+=======
+    m_AddedGameObjects: []
+>>>>>>> Stashed changes
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4945eb776a25b24aadd8cdc587f4f70, type: 3}
 --- !u!224 &260876593999962721 stripped
@@ -15174,6 +15248,16 @@ PrefabInstance:
       objectReference: {fileID: 47778004}
     - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
         type: 3}
+      propertyPath: killLimit
+      value: 
+      objectReference: {fileID: 2063209573}
+    - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 1127416282}
+    - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
+        type: 3}
       propertyPath: flowerPanel
       value: 
       objectReference: {fileID: 1043959845}
@@ -15189,9 +15273,19 @@ PrefabInstance:
       objectReference: {fileID: 941085}
     - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
         type: 3}
+      propertyPath: scoreCounter
+      value: 
+      objectReference: {fileID: 1224188192}
+    - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
+        type: 3}
       propertyPath: endQueenTarget
       value: 
       objectReference: {fileID: 134944082}
+    - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
+        type: 3}
+      propertyPath: milkFillScript
+      value: 
+      objectReference: {fileID: 1224188201}
     - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
         type: 3}
       propertyPath: endCameraTarget
@@ -15208,6 +15302,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2878681719475147487, guid: a50de4e1e28fa2545bae558091409599,
         type: 3}
+    - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
+        type: 3}
+      propertyPath: milkFillerScript
+      value: 
+      objectReference: {fileID: 1224188201}
+    - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
+        type: 3}
+      propertyPath: gameSpeedMultiplier
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 585559300465723165, guid: 998efb148f0624841b8c18aa397c9b9c,
         type: 3}
       propertyPath: m_LocalPosition.x

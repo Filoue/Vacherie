@@ -94,7 +94,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 575c50dc2e8f2474aa24a208303fd0fe, type: 3}
   pitchChangeRange: 0.05
   dingCooldown: 1
-  yodelDistance: 10
+  yodelDistance: 8
 --- !u!82 &8655182297771176313
 AudioSource:
   m_ObjectHideFlags: 0
