@@ -21,6 +21,7 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         ambient = true;
+        entities = true;
     }
 
 
@@ -57,12 +58,18 @@ public class SoundManager : MonoBehaviour
     public void PlayEndMusic()
     {
         audioSource.clip = endMusic;
-        audioSource.Play();
+        if (!audioSource.isPlaying) audioSource.Play();
     }
 
     public void PlayGameMusic()
     {
         audioSource.clip = gameMusic;
-        audioSource.Play();
+        if (!audioSource.isPlaying) audioSource.Play();
+    }
+
+    public void PlayMenuMusic()
+    {
+        audioSource.clip = menuMusic;
+        if (!audioSource.isPlaying) audioSource.Play();
     }
 }

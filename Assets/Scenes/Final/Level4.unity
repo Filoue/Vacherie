@@ -4085,6 +4085,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: niveau3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 493e570e3c62ad94a803d0ef9cccfe13,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 493e570e3c62ad94a803d0ef9cccfe13,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -4119,6 +4124,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 493e570e3c62ad94a803d0ef9cccfe13,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5924,6 +5934,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d0c0f6b388535c4d85a76fe627f2684, type: 3}
+--- !u!1 &1110697281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1110697282}
+  m_Layer: 0
+  m_Name: KillLimit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1110697282
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110697281}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 82.74}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2063209573}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1128789452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10368,6 +10409,7 @@ Transform:
   m_Children:
   - {fileID: 241189484}
   - {fileID: 1070384743}
+  - {fileID: 1110697282}
   m_Father: {fileID: 1389630246}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2068692855
@@ -11273,6 +11315,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9292737c80611124d819d91c6c46fc2e, type: 3}
+--- !u!114 &7904129993149184411 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 706818420824468162, guid: 9292737c80611124d819d91c6c46fc2e,
+    type: 3}
+  m_PrefabInstance: {fileID: 7904129993149184410}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!224 &7904129993149184412 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4058467498386833442, guid: 9292737c80611124d819d91c6c46fc2e,
+    type: 3}
+  m_PrefabInstance: {fileID: 7904129993149184410}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8709790334178587036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11293,6 +11353,16 @@ PrefabInstance:
       objectReference: {fileID: 47778004}
     - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
         type: 3}
+      propertyPath: killLimit
+      value: 
+      objectReference: {fileID: 1110697282}
+    - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 7904129993149184411}
+    - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
+        type: 3}
       propertyPath: flowerPanel
       value: 
       objectReference: {fileID: 1043959845}
@@ -11311,6 +11381,11 @@ PrefabInstance:
       propertyPath: endQueenTarget
       value: 
       objectReference: {fileID: 134944082}
+    - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
+        type: 3}
+      propertyPath: winFlowerPanel
+      value: 
+      objectReference: {fileID: 7904129993149184412}
     - target: {fileID: 287075383826873183, guid: 998efb148f0624841b8c18aa397c9b9c,
         type: 3}
       propertyPath: endCameraTarget
